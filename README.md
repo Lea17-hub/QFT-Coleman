@@ -202,3 +202,565 @@ T_{\text{NR}}
 
 - 多粒子态之所以在低能下被抑制，是因为它们和低能态之间有很大的能量间隔。
 - relativistic kinetic correction 和 multi-particle correction 会出现相近的低能展开参数。
+
+# QFT-Coleman
+
+## Lecture 1：Natural Units, Four-Vectors and Lorentz Invariance
+
+Coleman 一开始先统一计量单位。
+
+采用 natural units：
+
+```math
+c=1,
+\qquad
+\hbar=1.
+```
+
+有时还会进一步选择一个参考质量尺度
+
+```math
+m_{\mathrm{ref}}=1.
+```
+
+这样做以后，很多原本带有不同单位的物理量可以用同一个基本尺度表示。
+
+其中，设
+
+```math
+c=1
+```
+
+意味着速度是以光速作为单位来衡量的，因此普通宏观运动通常满足
+
+```math
+v\ll 1.
+```
+
+而设
+
+```math
+\hbar=1
+```
+
+意味着角动量是以一个量子单位 $\hbar$ 来衡量的。宏观系统的角动量通常包含极大量的 $\hbar$，因此往往有
+
+```math
+L\gg 1.
+```
+
+所以在 natural units 下，经典宏观世界常表现为
+
+```math
+v\ll 1,
+\qquad
+L\gg 1.
+```
+
+---
+
+## Four-vectors
+
+在狭义相对论中，时间和空间不能再完全分开处理，而是统一写成一个 four-vector。
+
+时空坐标写成
+
+```math
+x^\mu=(t,\mathbf{x})
+```
+
+或者显式地写成
+
+```math
+x^\mu=
+(t,x^1,x^2,x^3).
+```
+
+四动量写成
+
+```math
+p^\mu=(E,\mathbf{p}).
+```
+
+在一般单位制下，四动量和四波矢之间满足
+
+```math
+p^\mu=\hbar k^\mu.
+```
+
+由于这里取
+
+```math
+\hbar=1,
+```
+
+因此直接得到
+
+```math
+p^\mu=k^\mu.
+```
+
+在狭义相对论中，一个非常重要的问题就是：
+
+> 什么样的量在不同惯性参考系之间仍然保持不变？
+
+这就引出了 four-vector 的 inner product。
+
+---
+
+## Minkowski inner product
+
+对于两个 four-vectors
+
+```math
+A^\mu=(A^0,\mathbf A),
+\qquad
+B^\mu=(B^0,\mathbf B),
+```
+
+定义 Minkowski inner product：
+
+```math
+A\cdot B
+=
+A^0B^0-\mathbf A\cdot\mathbf B.
+```
+
+也就是说
+
+```math
+A\cdot B
+=
+A^0B^0
+-
+A^1B^1
+-
+A^2B^2
+-
+A^3B^3.
+```
+
+为了把这个写法压缩下来，引入 Minkowski metric：
+
+```math
+g_{\mu\nu}
+=
+\mathrm{diag}(1,-1,-1,-1).
+```
+
+显式地，
+
+```math
+g_{\mu\nu}
+=
+\begin{pmatrix}
+1&0&0&0\\
+0&-1&0&0\\
+0&0&-1&0\\
+0&0&0&-1
+\end{pmatrix}.
+```
+
+于是内积可以写成
+
+```math
+A\cdot B
+=
+g_{\mu\nu}A^\mu B^\nu.
+```
+
+这里使用了 Einstein summation convention：重复出现的指标自动求和。
+
+---
+
+## 为什么这个和矩阵写法是同一个东西？
+
+一开始我不太明白为什么还可以写成
+
+```math
+A\cdot B=A^TgB.
+```
+
+实际上，这和
+
+```math
+g_{\mu\nu}A^\mu B^\nu
+```
+
+完全是同一个运算，只是一个用 index notation，一个用 matrix notation。
+
+把 four-vector 看成列向量：
+
+```math
+A=
+\begin{pmatrix}
+A^0\\
+A^1\\
+A^2\\
+A^3
+\end{pmatrix},
+\qquad
+B=
+\begin{pmatrix}
+B^0\\
+B^1\\
+B^2\\
+B^3
+\end{pmatrix}.
+```
+
+先让 metric 作用在 $B$ 上：
+
+```math
+gB
+=
+\begin{pmatrix}
+B^0\\
+-B^1\\
+-B^2\\
+-B^3
+\end{pmatrix}.
+```
+
+再从左边乘
+
+```math
+A^T=
+\begin{pmatrix}
+A^0&A^1&A^2&A^3
+\end{pmatrix},
+```
+
+就得到
+
+```math
+A^TgB
+=
+A^0B^0
+-
+A^1B^1
+-
+A^2B^2
+-
+A^3B^3.
+```
+
+因此
+
+```math
+\boxed{
+A\cdot B
+=
+g_{\mu\nu}A^\mu B^\nu
+=
+A^TgB
+}
+```
+
+这里的 metric $g$ 可以理解为：
+
+> 它规定了 four-vector 之间的 inner product 应该怎样计算。
+
+普通 Euclidean space 中，metric 是单位矩阵 $I$，所以
+
+```math
+\mathbf a\cdot\mathbf b
+=
+a^TIb
+=
+a^Tb.
+```
+
+而 Minkowski spacetime 的 metric 不是 $I$，而是
+
+```math
+g=
+\mathrm{diag}(1,-1,-1,-1),
+```
+
+所以时间项和空间项之间出现了不同的符号。
+
+---
+
+## Lowering an index
+
+既然 metric 可以作用在一个 four-vector 上，就可以定义 lowering operation：
+
+```math
+A_\mu
+=
+g_{\mu\nu}A^\nu.
+```
+
+对于
+
+```math
+A^\mu=
+(A^0,A^1,A^2,A^3),
+```
+
+有
+
+```math
+A_\mu
+=
+(A^0,-A^1,-A^2,-A^3).
+```
+
+也就是说：
+
+```math
+A_0=A^0,
+```
+
+而空间分量满足
+
+```math
+A_1=-A^1,
+\qquad
+A_2=-A^2,
+\qquad
+A_3=-A^3.
+```
+
+因此 Minkowski inner product 还可以写成
+
+```math
+A\cdot B
+=
+A_\mu B^\mu
+=
+A^\mu B_\mu.
+```
+
+所以目前几种写法都是等价的：
+
+```math
+\boxed{
+A\cdot B
+=
+g_{\mu\nu}A^\mu B^\nu
+=
+A_\mu B^\mu
+=
+A^\mu B_\mu
+=
+A^TgB
+}
+```
+
+特别地，一个 four-vector 和自己的内积为
+
+```math
+A^2
+=
+A_\mu A^\mu
+=
+(A^0)^2-|\mathbf A|^2.
+```
+
+---
+
+## Lorentz invariance 到底是什么意思？
+
+所谓 Lorentz invariant，意思是：
+
+> 换到另一个惯性参考系以后，four-vector 的 components 会变，但 Minkowski inner product 不变。
+
+设 Lorentz transformation 为
+
+```math
+A'=\Lambda A,
+\qquad
+B'=\Lambda B.
+```
+
+变换后的 inner product 是
+
+```math
+A'\cdot B'
+=
+(A')^TgB'.
+```
+
+代入
+
+```math
+A'=\Lambda A,
+\qquad
+B'=\Lambda B,
+```
+
+得到
+
+```math
+A'\cdot B'
+=
+(\Lambda A)^Tg(\Lambda B).
+```
+
+利用
+
+```math
+(\Lambda A)^T=A^T\Lambda^T,
+```
+
+于是
+
+```math
+A'\cdot B'
+=
+A^T\Lambda^Tg\Lambda B.
+```
+
+因此，如果希望对于任意 $A$ 和 $B$ 都满足
+
+```math
+A'\cdot B'
+=
+A\cdot B,
+```
+
+就必须有
+
+```math
+\boxed{
+\Lambda^Tg\Lambda=g
+}
+```
+
+这样：
+
+```math
+A'\cdot B'
+=
+A^T\Lambda^Tg\Lambda B
+=
+A^TgB
+=
+A\cdot B.
+```
+
+所以
+
+```math
+\boxed{
+\Lambda^Tg\Lambda=g
+}
+```
+
+并不是一个独立、莫名其妙的矩阵条件。
+
+它表达的正是：
+
+> Lorentz transformation 必须保持 Minkowski inner product 不变。
+
+---
+
+## 和普通 rotation 的类比
+
+在普通 Euclidean space 中，
+
+```math
+\mathbf a\cdot\mathbf b
+=
+a^TIb.
+```
+
+如果做 rotation：
+
+```math
+a'=Ra,
+\qquad
+b'=Rb,
+```
+
+那么
+
+```math
+a'\cdot b'
+=
+a^TR^TIRb.
+```
+
+为了让 ordinary inner product 不变，需要
+
+```math
+R^TIR=I.
+```
+
+由于 $I$ 是单位矩阵，这就是
+
+```math
+R^TR=I.
+```
+
+而在 Minkowski spacetime 中，只是把 $I$ 换成了 $g$：
+
+```math
+R^TR=I
+```
+
+对应
+
+```math
+\Lambda^Tg\Lambda=g.
+```
+
+因此可以把 Lorentz transformation 看成 Minkowski spacetime 中对应于 rotation 的变换：
+
+> rotation 保持 Euclidean inner product，  
+> Lorentz transformation 保持 Minkowski inner product。
+
+---
+
+## 当前理解
+
+这一部分最重要的逻辑是：
+
+```math
+g_{\mu\nu}
+```
+
+定义了 Minkowski spacetime 中如何计算 inner product。
+
+因此
+
+```math
+A\cdot B
+=
+g_{\mu\nu}A^\mu B^\nu
+=
+A^TgB.
+```
+
+metric 还可以用来 lowering index：
+
+```math
+A_\mu=g_{\mu\nu}A^\nu.
+```
+
+而 Lorentz transformation 的核心条件
+
+```math
+\Lambda^Tg\Lambda=g
+```
+
+正是为了保证
+
+```math
+A'\cdot B'
+=
+A\cdot B.
+```
+
+所以这几个原本看起来分散的公式，其实是在描述同一件事：
+
+> **Minkowski spacetime 有一种特殊的几何结构，而 Lorentz transformation 是保持这种几何结构不变的变换。**
+
+
+
+
+
+
+
