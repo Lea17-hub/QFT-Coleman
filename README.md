@@ -561,6 +561,144 @@ A_\mu A^\mu
 
 ---
 
+## 什么是惯性参考系？
+
+在讨论 Lorentz transformation 之前，先明确什么叫 **inertial frame（惯性参考系）**。
+
+一个参考系如果满足：
+
+> 不受力的物体在其中保持静止或做匀速直线运动，
+
+那么这个参考系就是惯性系。
+
+也就是说，惯性系本身不加速、不转弯。
+
+例如：
+
+- 地面上的实验室，可以近似看成一个惯性系；
+- 一列以恒定速度做直线运动的火车，也可以近似看成另一个惯性系；
+- 如果火车开始加速、刹车或转弯，那么它就不再是惯性系。
+
+狭义相对论主要讨论的，就是**不同惯性系之间的关系**。
+
+设两个惯性系：
+
+- $S$：站台上的观察者；
+- $S'$：相对 $S$ 以恒定速度运动的火车上的观察者。
+
+对于同一个事件，$S$ 中可能给出坐标
+
+```math
+(t,x,y,z),
+```
+
+而 $S'$ 中给出的坐标可能是
+
+```math
+(t',x',y',z').
+```
+
+这些坐标分量本身一般不同。
+
+---
+
+## Lorentz invariance 到底是什么意思？
+
+所谓 Lorentz invariant，意思是：
+
+> 不同惯性参考系中的观察者，虽然会给同一个事件不同的时间和空间坐标，但某些特定的物理量保持不变。
+
+最重要的例子就是 spacetime interval：
+
+```math
+\Delta s^2
+=
+(\Delta t)^2
+-
+(\Delta x)^2
+-
+(\Delta y)^2
+-
+(\Delta z)^2.
+```
+
+这里使用了
+
+```math
+c=1.
+```
+
+如果在另一个惯性系中测得
+
+```math
+\Delta t',
+\quad
+\Delta x',
+\quad
+\Delta y',
+\quad
+\Delta z',
+```
+
+那么 Lorentz transformation 保证
+
+```math
+\boxed{
+\Delta s'^2
+=
+\Delta s^2
+}
+```
+
+也就是说：
+
+```math
+(\Delta t')^2
+-
+(\Delta x')^2
+-
+(\Delta y')^2
+-
+(\Delta z')^2
+=
+(\Delta t)^2
+-
+(\Delta x)^2
+-
+(\Delta y)^2
+-
+(\Delta z)^2.
+```
+
+所以“不变”的不是每一个 component，而是这个特定组合。
+
+这和普通空间旋转非常类似。
+
+二维空间中，一个点经过 rotation 后：
+
+```math
+(x,y)
+\rightarrow
+(x',y'),
+```
+
+虽然 $x$ 和 $y$ 都改变了，但
+
+```math
+x^2+y^2
+```
+
+保持不变。
+
+狭义相对论中也是类似的：
+
+> rotation 保持 Euclidean distance，  
+> Lorentz transformation 保持 Minkowski spacetime interval。
+
+因此，Lorentz transformation 可以理解为：
+
+> 不同惯性参考系之间的坐标变换，同时保持 Minkowski geometry 不变。
+
 ## Lorentz invariance 到底是什么意思？
 
 所谓 Lorentz invariant，意思是：
