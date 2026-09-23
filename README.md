@@ -897,6 +897,1251 @@ A\cdot B.
 > **Minkowski spacetime 有一种特殊的几何结构，而 Lorentz transformation 是保持这种几何结构不变的变换。**
 
 
+## Lorentz transformations as matrices
+
+一个 Lorentz transformation 可以用一个 $4\times4$ 矩阵
+
+```math
+\Lambda
+```
+
+来表示。
+
+对于一个 four-vector
+
+```math
+A,
+```
+
+Lorentz transformation 的作用是
+
+```math
+A'=\Lambda A.
+```
+
+一般来说，一个任意的 $4\times4$ 矩阵都会定义某种 linear transformation。
+
+但相对论中我们并不关心所有 linear transformations，而只关心那些保持 Minkowski inner product 不变的变换。
+
+也就是说，如果
+
+```math
+A'=\Lambda A,
+\qquad
+B'=\Lambda B,
+```
+
+我们要求
+
+```math
+A'\cdot B'
+=
+A\cdot B.
+```
+
+由于
+
+```math
+A\cdot B=A^TgB,
+```
+
+所以
+
+```math
+A'\cdot B'
+=
+A^T\Lambda^Tg\Lambda B.
+```
+
+为了让这个等于
+
+```math
+A^TgB
+```
+
+对于任意 $A,B$ 都成立，必须满足
+
+```math
+\boxed{
+\Lambda^Tg\Lambda=g
+}
+```
+
+这就是 Lorentz transformation 的 defining condition。这里有一个容易产生的语言混淆：
+
+如果已经称 $\Lambda$ 为 Lorentz transformation，那么再说“我们只考虑其中保持 inner product 不变的 Lorentz transformations”其实是重复的。
+
+更准确的逻辑是：
+
+```math
+\text{general linear transformations}
+\quad\supset\quad
+\text{Lorentz transformations},
+```
+
+其中 Lorentz transformations 正是由
+
+```math
+\boxed{
+\Lambda^Tg\Lambda=g
+}
+```
+
+定义出来的那一类 linear transformations。
+
+所以这里不是先有一个叫做 Lorentz transformation 的更大集合，再从中挑选保持 inner product 的部分；而是：
+
+> **保持 Minkowski inner product 不变，本身就是 Lorentz transformation 的 defining property。**
+
+因此：
+
+> Lorentz transformations 是所有保持 Minkowski inner product 不变的线性变换。
+
+---
+
+# Lorentz Group and Poincaré Symmetry
+
+这一部分的主线是：
+
+```math
+\text{Lorentz transformations}
+\longrightarrow
+O(3,1)
+\longrightarrow
+SO^+(3,1)
+\longrightarrow
+\text{timelike / spacelike / lightlike}
+\longrightarrow
+\text{Poincaré group}.
+```
+
+---
+
+## 1. Lorentz transformations form a group
+
+Lorentz transformations 满足
+
+```math
+\Lambda^T g \Lambda = g.
+```
+
+如果
+
+```math
+\Lambda_1^T g \Lambda_1 = g,
+\qquad
+\Lambda_2^T g \Lambda_2 = g,
+```
+
+那么它们的乘积满足
+
+```math
+(\Lambda_1\Lambda_2)^T g (\Lambda_1\Lambda_2)
+=
+\Lambda_2^T\Lambda_1^T g\Lambda_1\Lambda_2
+=
+\Lambda_2^T g\Lambda_2
+=
+g.
+```
+
+因此
+
+```math
+\Lambda_1\Lambda_2
+```
+
+仍然是 Lorentz transformation。
+
+Lorentz transformation 也一定可逆。由
+
+```math
+\Lambda^T g\Lambda=g
+```
+
+可得
+
+```math
+\Lambda^{-1}=g^{-1}\Lambda^T g.
+```
+
+在我们的 convention 中
+
+```math
+g^{-1}=g,
+```
+
+因此
+
+```math
+\boxed{
+\Lambda^{-1}=g\Lambda^T g
+}
+```
+
+仍然是 Lorentz transformation。
+
+所以这些变换构成一个 group，记作
+
+```math
+\boxed{O(3,1)}
+```
+
+或者根据 metric signature convention 写作
+
+```math
+O(1,3).
+```
+
+这里采用
+
+```math
+g=\mathrm{diag}(1,-1,-1,-1).
+```
+
+---
+
+## 2. 为什么完整的 Lorentz group 太大？
+
+完整的
+
+```math
+O(3,1)
+```
+
+不仅包含 rotations 和 boosts，也包含一些 discrete transformations，例如 parity 和 time reversal。
+
+### 2.1 Parity 和 time reversal
+
+Parity 把空间方向全部反过来：
+
+```math
+P:\qquad
+(t,\mathbf x)
+\longrightarrow
+(t,-\mathbf x).
+```
+
+矩阵形式为
+
+```math
+P=
+\begin{pmatrix}
+1&0&0&0\\
+0&-1&0&0\\
+0&0&-1&0\\
+0&0&0&-1
+\end{pmatrix}.
+```
+
+它满足
+
+```math
+P^TgP=g,
+```
+
+所以数学上确实属于 Lorentz group。
+
+Time reversal 为
+
+```math
+T:\qquad
+(t,\mathbf x)
+\longrightarrow
+(-t,\mathbf x),
+```
+
+对应
+
+```math
+T=
+\begin{pmatrix}
+-1&0&0&0\\
+0&1&0&0\\
+0&0&1&0\\
+0&0&0&1
+\end{pmatrix},
+```
+
+并且同样满足
+
+```math
+T^TgT=g.
+```
+
+所以 $P$ 和 $T$ 都属于完整的 $O(3,1)$。
+
+---
+
+### 2.2 数学上的 Lorentz group 和自然界的 Lorentz symmetry
+
+这里需要区分两个概念：
+
+```math
+\text{Lorentz transformation}
+```
+
+是数学概念，而
+
+```math
+\text{the world is Lorentz invariant}
+```
+
+是关于物理规律的 statement。
+
+Lorentz transformation 只要求
+
+```math
+\Lambda^Tg\Lambda=g.
+```
+
+而“世界是 Lorentz invariant”意味着：
+
+> **物理规律在 Lorentz transformations 下保持相同形式。**
+
+对于 boosts 来说，这意味着：
+
+> **所有 inertial frames 中的物理规律具有相同形式。**
+
+一个静止的实验室和一个相对于它做匀速直线运动的实验室，没有谁是物理上特殊的“绝对静止系”。
+
+不同 observers 测得的
+
+```math
+t,\quad x,\quad E,\quad p
+```
+
+可以不同；不变的是 physical laws 的形式，而不是每一个 measurement value。
+
+---
+
+### 2.3 为什么 weak interaction 会让 parity 成为问题？
+
+Parity 做的是
+
+```math
+\mathbf x\rightarrow-\mathbf x,
+```
+
+因此 momentum 变成
+
+```math
+\mathbf p\rightarrow-\mathbf p.
+```
+
+spin 是 axial vector，所以在 parity 下不反号：
+
+```math
+\mathbf S\rightarrow\mathbf S.
+```
+
+因此 helicity
+
+```math
+h\propto\mathbf S\cdot\mathbf p
+```
+
+会反号：
+
+```math
+h\rightarrow-h.
+```
+
+这里 helicity 只表示：
+
+> spin 和 momentum 是同向还是反向。
+
+对于 massive particle，可以换到一个“超过粒子”的 inertial frame，使 momentum 方向翻转，因此 helicity 可以随 reference frame 改变。
+
+对于 massless particle，粒子始终以光速运动，不可能通过合法 Lorentz boost 超过它，因此 helicity 不能通过换 inertial frame 翻转。
+
+需要区分
+
+```math
+\boxed{
+\text{helicity}\neq\text{chirality}
+}
+```
+
+一般情况下二者不是同一个概念。
+
+chirality 来自 Dirac spinor 本身的结构：
+
+```math
+\psi=\psi_L+\psi_R,
+```
+
+其中
+
+```math
+\psi_L
+=
+\frac{1-\gamma^5}{2}\psi,
+```
+
+```math
+\psi_R
+=
+\frac{1+\gamma^5}{2}\psi.
+```
+
+这里的 left/right 不是普通空间中的“朝左/朝右”，而是 fermion field 的两种 chiral components。
+
+Parity 会交换它们：
+
+```math
+\boxed{
+\psi_L\leftrightarrow\psi_R
+}
+```
+
+而 weak charged-current interaction 对左右 chirality 并不对称，因此 parity-transformed interaction 不再等于原来的 interaction。
+
+所以：
+
+```math
+\boxed{
+P\text{ is not a symmetry of the weak interaction}
+}
+```
+
+这并不意味着 weak interaction 破坏 Lorentz invariance；它破坏的是 parity 这个 discrete symmetry。
+
+---
+
+### 2.4 Time reversal 的物理含义
+
+Time reversal 不是简单地“把录像倒着播放”。
+
+如果一个过程写成
+
+```math
+i\rightarrow f,
+```
+
+其中 $i$ 是 initial state，$f$ 是 final state，那么 time reversal 后比较的是
+
+```math
+\boxed{
+Tf\rightarrow Ti
+}
+```
+
+因为时间方向反过来以后，原来的 final configuration 成为新的“开始”，原来的 initial configuration 成为新的“结束”。
+
+同时状态本身也要做 time-reversal transformation，例如
+
+```math
+\mathbf p\rightarrow-\mathbf p,
+```
+
+以及
+
+```math
+\mathbf L\rightarrow-\mathbf L.
+```
+
+所以 $Tf$ 不是简单的 $f$，而是 $f$ 的 time-reversed state。
+
+---
+
+## 3. Connected component 和 $SO^+(3,1)$
+
+### 3.1 什么叫 connected to the identity？
+
+identity transformation 是
+
+```math
+I=
+\begin{pmatrix}
+1&0&0&0\\
+0&1&0&0\\
+0&0&1&0\\
+0&0&0&1
+\end{pmatrix}.
+```
+
+一个 transformation 与 identity connected，意思是：
+
+> 可以从 $I$ 出发，通过连续改变 transformation parameters，一点一点走到这个 transformation，并且整个过程中始终停留在 Lorentz group 内。
+
+普通 rotation 是这样的：
+
+```math
+R_z(0)=I,
+```
+
+然后连续改变 angle $\theta$。
+
+Lorentz boost 也一样：
+
+```math
+\Lambda(v=0)=I,
+```
+
+然后连续改变 velocity $v$，只要
+
+```math
+|v|<1.
+```
+
+但 parity 和 time reversal 不与 identity 连通。
+
+---
+
+### 3.2 为什么 parity 不能连续地从 identity 得到？
+
+从 Lorentz condition
+
+```math
+\Lambda^Tg\Lambda=g
+```
+
+取 determinant：
+
+```math
+\det(\Lambda^T)\det(g)\det(\Lambda)
+=
+\det(g).
+```
+
+因为
+
+```math
+\det(\Lambda^T)=\det\Lambda
+```
+
+并且
+
+```math
+\det g\neq0,
+```
+
+所以
+
+```math
+(\det\Lambda)^2=1.
+```
+
+因此
+
+```math
+\boxed{
+\det\Lambda=\pm1
+}
+```
+
+identity 满足
+
+```math
+\det I=+1,
+```
+
+而 parity 满足
+
+```math
+\det P=-1.
+```
+
+这里不是 $\det g$ 在变化；$g$ 始终固定。
+
+如果存在一条连续路径 $\Lambda(s)$ 从 $I$ 走到 $P$，那么
+
+```math
+\det\Lambda(s)
+```
+
+作为连续函数就必须从 $+1$ 连续变到 $-1$。
+
+但在 Lorentz group 内，$\det\Lambda$ 只能取 $+1$ 或 $-1$，所以不存在这样一条始终留在 Lorentz group 内的连续路径。
+
+因此 parity 和 identity 位于不同 connected components。
+
+---
+
+### 3.3 Proper orthochronous Lorentz group
+
+Coleman 所说的 connected Lorentz group 通常记为
+
+```math
+\boxed{SO^+(3,1)}
+```
+
+其中 $S$ 表示 special / proper：
+
+```math
+\det\Lambda=+1.
+```
+
+上标 $+$ 表示 orthochronous，即保持 future time direction。
+
+对于 proper orthochronous Lorentz transformation，
+
+```math
+\Lambda^0{}_0\ge1.
+```
+
+为什么？考虑时间基矢
+
+```math
+e_0=(1,0,0,0)^T.
+```
+
+经过 Lorentz transformation：
+
+```math
+e'_0=\Lambda e_0.
+```
+
+它的时间分量就是
+
+```math
+(e'_0)^0=\Lambda^0{}_0.
+```
+
+由于 Lorentz transformation 保持 norm，
+
+```math
+(e'_0)^2=e_0^2=1,
+```
+
+所以
+
+```math
+(\Lambda^0{}_0)^2
+-
+\sum_i(\Lambda^i{}_0)^2
+=1.
+```
+
+因此
+
+```math
+|\Lambda^0{}_0|\ge1.
+```
+
+保持 future direction 选择的是
+
+```math
+\boxed{\Lambda^0{}_0\ge1}.
+```
+
+于是 $SO^+(3,1)$ 同时排除了 spatial reflection 和 future/past reversal。
+
+---
+
+### 3.4 和普通 rotation 的类比
+
+三维 Euclidean space 中，所有保持 Euclidean inner product 的 transformations 构成
+
+```math
+O(3).
+```
+
+它既包含 rotations，也包含 reflections。
+
+只保留
+
+```math
+\det R=+1
+```
+
+得到
+
+```math
+SO(3),
+```
+
+也就是真正的 proper rotations。
+
+因此可以类比：
+
+```math
+O(3)
+\supset
+SO(3),
+```
+
+而
+
+```math
+O(3,1)
+\supset
+SO^+(3,1).
+```
+
+前者从所有 orthogonal transformations 中排除 reflections；后者从完整 Lorentz group 中保留与 identity 连通的 rotations 和 boosts。
+
+---
+
+## 4. Timelike, spacelike and lightlike four-vectors
+
+Lorentz transformation 保持
+
+```math
+A^2=A_\mu A^\mu
+```
+
+不变。
+
+对于
+
+```math
+A^\mu=(A^0,\mathbf A),
+```
+
+有
+
+```math
+A^2=(A^0)^2-|\mathbf A|^2.
+```
+
+所以 $A^2$ 的符号也是 Lorentz invariant，于是 four-vectors 自然分成三类。
+
+### 4.1 一个统一的 boost 公式
+
+先通过 ordinary spatial rotation，把 $\mathbf A$ 转到 $x$ 方向：
+
+```math
+A^\mu=(A^0,A^1,0,0).
+```
+
+沿 $x$ 方向做 Lorentz boost：
+
+```math
+\Lambda_x(\beta)
+=
+\begin{pmatrix}
+\gamma&-\gamma\beta&0&0\\
+-\gamma\beta&\gamma&0&0\\
+0&0&1&0\\
+0&0&0&1
+\end{pmatrix},
+```
+
+其中
+
+```math
+\gamma=\frac{1}{\sqrt{1-\beta^2}}.
+```
+
+因此
+
+```math
+A'^0
+=
+\gamma(A^0-\beta A^1),
+```
+
+```math
+A'^1
+=
+\gamma(A^1-\beta A^0),
+```
+
+而
+
+```math
+\boxed{
+A'^2=A^2,
+\qquad
+A'^3=A^3
+}
+```
+
+所以沿 $x$ 方向 boost 只混合 $t$ 和 $x$ components，不会产生新的 $y,z$ components。
+
+---
+
+### 4.2 Timelike
+
+如果
+
+```math
+A^2>0,
+```
+
+即
+
+```math
+(A^0)^2>|\mathbf A|^2,
+```
+
+称为 timelike。
+
+在上面的 frame 中，如果要求
+
+```math
+A'^1=0,
+```
+
+需要
+
+```math
+\beta=\frac{A^1}{A^0}.
+```
+
+由于 timelike condition 保证
+
+```math
+|\beta|<1,
+```
+
+所以这是合法 boost。
+
+因此
+
+```math
+\boxed{
+A^2>0
+\quad\Rightarrow\quad
+\exists\text{ frame such that }
+A'^\mu=(A'^0,\mathbf0)
+}
+```
+
+massive particle 的 four-momentum
+
+```math
+p^\mu=(E,\mathbf p)
+```
+
+满足
+
+```math
+p^2=E^2-\mathbf p^2=m^2>0,
+```
+
+所以是 timelike；对应的特殊 frame 就是 rest frame。
+
+---
+
+### 4.3 Spacelike
+
+如果
+
+```math
+A^2<0,
+```
+
+即
+
+```math
+(A^0)^2<|\mathbf A|^2,
+```
+
+称为 spacelike。
+
+如果要求
+
+```math
+A'^0=0,
+```
+
+需要
+
+```math
+\beta=\frac{A^0}{A^1}.
+```
+
+spacelike condition 同样保证
+
+```math
+|\beta|<1.
+```
+
+所以
+
+```math
+\boxed{
+A^2<0
+\quad\Rightarrow\quad
+\exists\text{ frame such that }
+A'^\mu=(0,\mathbf A')
+}
+```
+
+---
+
+### 4.4 Lightlike
+
+如果
+
+```math
+A^2=0,
+```
+
+称为 lightlike 或 null。
+
+此时
+
+```math
+(A^0)^2=|\mathbf A|^2.
+```
+
+如果想令 $A'^1=0$ 或 $A'^0=0$，都需要
+
+```math
+|\beta|=1.
+```
+
+但 inertial observer 的 boost 必须满足
+
+```math
+|\beta|<1.
+```
+
+所以不存在这样的 inertial frame。
+
+因此
+
+```math
+\boxed{
+A^2=0
+}
+```
+
+的 vector 既不能变成纯 time direction，也不能变成纯 spatial direction。
+
+photon 的 four-momentum 满足
+
+```math
+p^2=0,
+```
+
+所以是 lightlike。
+
+---
+
+### 4.5 三种类型为什么不能互相变？
+
+因为
+
+```math
+A'^2=A^2,
+```
+
+所以 $A^2$ 的符号在任何 Lorentz frame 中都不变：
+
+```math
+\text{timelike}\rightarrow\text{timelike},
+```
+
+```math
+\text{spacelike}\rightarrow\text{spacelike},
+```
+
+```math
+\text{lightlike}\rightarrow\text{lightlike}.
+```
+
+这三类不是人为随便命名，而是 Lorentz symmetry 自然给出的分类。
+
+---
+
+## 5. Spacetime translations and Noether theorem
+
+世界的 spacetime symmetry 不只包括 Lorentz transformations，还包括 spacetime translations：
+
+```math
+x^\mu
+\longrightarrow
+x'^\mu
+=
+x^\mu+a^\mu,
+```
+
+其中 $a^\mu$ 是固定 four-vector。
+
+也就是说：
+
+```math
+t\rightarrow t+a^0,
+```
+
+以及
+
+```math
+\mathbf x\rightarrow\mathbf x+\mathbf a.
+```
+
+物理意义是：
+
+> 同一个实验今天做和明天做，fundamental laws 应该相同；
+
+> 同一个实验在这里做和移动到另一个位置做，fundamental laws 也应该相同。
+
+这就是 spacetime translation invariance。
+
+Noether theorem 给出：
+
+```math
+\text{time translation}
+\longleftrightarrow
+\text{energy conservation},
+```
+
+```math
+\text{space translation}
+\longleftrightarrow
+\text{momentum conservation}.
+```
+
+因此 spacetime translations 整体对应 four-momentum conservation：
+
+```math
+\boxed{
+p^\mu=\text{conserved}
+}
+```
+
+Lorentz symmetry 本身也有对应的 Noether quantities：
+
+- spatial rotations 对应 angular momentum；
+- boosts 也有相应的 conserved generators。
+
+所以不仅 translations，所有连续 spacetime symmetries 都可以和 Noether theorem 联系起来。
+
+---
+
+## 6. The Poincaré group
+
+把 Lorentz transformations 和 spacetime translations 放在一起，最一般的 transformation 是
+
+```math
+\boxed{
+x'^\mu
+=
+\Lambda^\mu{}_{\nu}x^\nu
++
+a^\mu
+}
+```
+
+或者矩阵记号
+
+```math
+\boxed{
+x'=\Lambda x+a.
+}
+```
+
+一个 Poincaré transformation 因此由
+
+```math
+(\Lambda,a)
+```
+
+共同标记。
+
+所有这些 transformations 构成 Poincaré group：
+
+```math
+\boxed{
+\mathcal P
+=
+\mathbb R^{1,3}
+\rtimes
+SO^+(3,1)
+}
+```
+
+其中
+
+```math
+\mathbb R^{1,3}
+```
+
+表示 spacetime translation group，而
+
+```math
+SO^+(3,1)
+```
+
+表示 connected Lorentz group。
+
+---
+
+### 6.1 为什么是 semidirect product，而不是 direct product？
+
+符号
+
+```math
+\rtimes
+```
+
+表示 semidirect product。
+
+如果两个群只是普通 direct product，那么两部分的 group multiplication 会彼此独立。
+
+但 Poincaré group 中，Lorentz transformation 会作用在 translation vector 上。
+
+设第一个 transformation 为
+
+```math
+x'=\Lambda_1x+a_1,
+```
+
+第二个 transformation 为
+
+```math
+x''=\Lambda_2x'+a_2.
+```
+
+代入第一个：
+
+```math
+x''
+=
+\Lambda_2(\Lambda_1x+a_1)+a_2.
+```
+
+展开：
+
+```math
+x''
+=
+\Lambda_2\Lambda_1x
++
+\Lambda_2a_1
++
+a_2.
+```
+
+因此 group multiplication 是
+
+```math
+\boxed{
+(\Lambda_2,a_2)(\Lambda_1,a_1)
+=
+(\Lambda_2\Lambda_1,\;\Lambda_2a_1+a_2)
+}
+```
+
+关键是 translation 部分不是简单的
+
+```math
+a_1+a_2,
+```
+
+而是
+
+```math
+\Lambda_2a_1+a_2.
+```
+
+也就是说，前一个 translation vector $a_1$ 会先被后一个 Lorentz transformation $\Lambda_2$ 作用。
+
+这正是 semidirect product 的含义：
+
+> 一个 subgroup 会作用在另一个 subgroup 上，所以两部分并不是完全独立的。
+
+一个直观的空间例子是：先平移，再旋转。
+
+```math
+x\rightarrow x+a
+```
+
+然后
+
+```math
+x\rightarrow Rx.
+```
+
+合起来得到
+
+```math
+x\rightarrow R(x+a)=Rx+Ra.
+```
+
+原来的 translation vector $a$ 也被旋转成了 $Ra$。
+
+因此：
+
+```math
+\boxed{
+\text{direct product: 两部分互不作用}
+}
+```
+
+而
+
+```math
+\boxed{
+\text{semidirect product: 一部分会作用在另一部分上}
+}
+```
+
+所以 Poincaré group 写成
+
+```math
+\boxed{
+\mathcal P
+=
+\mathbb R^{1,3}\rtimes SO^+(3,1)
+}
+```
+
+而不是普通的 $\times$。
+
+---
+
+## 7. 这一部分的整体图景
+
+今天这部分可以压缩成：
+
+```math
+\boxed{
+O(3,1)
+\supset
+SO^+(3,1)
+}
+```
+
+完整的 $O(3,1)$ 包含 rotations、boosts、parity、time reversal 等；课程主要使用与 identity 连通的
+
+```math
+SO^+(3,1).
+```
+
+Lorentz transformations 保持
+
+```math
+A^2
+```
+
+不变，因此 four-vectors 被自然分成 timelike、spacelike 和 lightlike 三类。
+
+再加入 spacetime translations：
+
+```math
+x\rightarrow\Lambda x+a,
+```
+
+就得到 Poincaré symmetry：
+
+```math
+\boxed{
+\text{Poincaré symmetry}
+=
+\text{Lorentz symmetry}
++
+\text{spacetime translations}.
+}
+```
+
+而更精确的 group structure 是
+
+```math
+\boxed{
+\mathcal P
+=
+\mathbb R^{1,3}\rtimes SO^+(3,1).
+}
+```
+
+所以 Coleman 这一段实际上是在建立 relativistic QFT 后面最基本的 spacetime symmetry framework。
+
 
 
 
