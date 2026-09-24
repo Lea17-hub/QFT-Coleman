@@ -2143,6 +2143,845 @@ x\rightarrow\Lambda x+a,
 所以 Coleman 这一段实际上是在建立 relativistic QFT 后面最基本的 spacetime symmetry framework。
 
 
+## Relativistic notation: derivatives, integrals, delta functions and Fourier transforms
+
+这一部分主要是在建立 relativistic field theory 里之后会反复出现的一套 notation。
+
+核心思想是：
+
+> 在相对论中，时间和空间应该尽可能统一地写成 four-dimensional objects，并且我们希望公式在 Lorentz transformations 下保持自然的形式。
+
+---
+
+### Four-dimensional derivative
+
+定义四维导数：
+
+```math
+\partial_\mu
+\equiv
+\frac{\partial}{\partial x^\mu}.
+```
+
+如果
+
+```math
+x^\mu=(t,\mathbf x),
+```
+
+那么在 convention
+
+```math
+g_{\mu\nu}
+=
+\mathrm{diag}(1,-1,-1,-1)
+```
+
+下，
+
+```math
+\partial_\mu
+=
+\left(
+\frac{\partial}{\partial t},
+\nabla
+\right).
+```
+
+这里
+
+```math
+\nabla
+=
+\left(
+\frac{\partial}{\partial x},
+\frac{\partial}{\partial y},
+\frac{\partial}{\partial z}
+\right).
+```
+
+$\partial_\mu$ 是一个 covariant object。
+
+它之所以这样变换，可以从 chain rule 看出来。
+
+Lorentz transformation 为
+
+```math
+x'^\mu
+=
+\Lambda^\mu{}_\nu x^\nu.
+```
+
+因此
+
+```math
+x^\nu
+=
+(\Lambda^{-1})^\nu{}_\mu x'^\mu.
+```
+
+所以
+
+```math
+\partial'_\mu
+=
+\frac{\partial}{\partial x'^\mu}
+=
+\frac{\partial x^\nu}{\partial x'^\mu}
+\frac{\partial}{\partial x^\nu},
+```
+
+即
+
+```math
+\boxed{
+\partial'_\mu
+=
+(\Lambda^{-1})^\nu{}_\mu
+\partial_\nu.
+}
+```
+
+这就是 covariant transformation law。
+
+---
+
+### Covariant 和 contravariant
+
+这里顺便区分两个常见词。
+
+upper-index object
+
+```math
+A^\mu
+```
+
+叫 contravariant vector，它按
+
+```math
+\boxed{
+A'^\mu
+=
+\Lambda^\mu{}_\nu A^\nu
+}
+```
+
+变换。
+
+lower-index object
+
+```math
+A_\mu
+```
+
+叫 covariant vector，它按
+
+```math
+\boxed{
+A'_\mu
+=
+(\Lambda^{-1})^\nu{}_\mu A_\nu
+}
+```
+
+变换。
+
+因此可以先简单记成：
+
+```math
+\text{contravariant}
+\leftrightarrow
+\text{upper index},
+```
+
+```math
+\text{covariant}
+\leftrightarrow
+\text{lower index}.
+```
+
+metric $g_{\mu\nu}$ 负责在两者之间升降指标。
+
+---
+
+### Raising the derivative index
+
+定义
+
+```math
+\partial^\mu
+=
+g^{\mu\nu}\partial_\nu.
+```
+
+由于
+
+```math
+g^{\mu\nu}
+=
+\mathrm{diag}(1,-1,-1,-1),
+```
+
+所以
+
+```math
+\partial^\mu
+=
+\left(
+\frac{\partial}{\partial t},
+-\nabla
+\right).
+```
+
+升指标以后，$\partial^\mu$ 按 contravariant vector 的方式变换：
+
+```math
+\boxed{
+\partial'^\mu
+=
+\Lambda^\mu{}_\nu
+\partial^\nu.
+}
+```
+
+本质上是因为 metric 与 Lorentz transformation 相容：
+
+```math
+\Lambda^Tg\Lambda=g.
+```
+
+所以 raising/lowering index 不会破坏 Lorentz transformation structure。
+
+---
+
+## The d'Alembert operator
+
+定义 d'Alembert operator：
+
+```math
+\Box
+\equiv
+\partial_\mu\partial^\mu.
+```
+
+展开：
+
+```math
+\boxed{
+\Box
+=
+\frac{\partial^2}{\partial t^2}
+-
+\nabla^2
+}
+```
+
+其中
+
+```math
+\nabla^2
+=
+\frac{\partial^2}{\partial x^2}
++
+\frac{\partial^2}{\partial y^2}
++
+\frac{\partial^2}{\partial z^2}.
+```
+
+---
+
+### 为什么 $\Box$ 是 Lorentz invariant？
+
+因为
+
+```math
+\partial_\mu
+```
+
+按 covariant law 变换：
+
+```math
+\partial'_\mu
+=
+(\Lambda^{-1})^\nu{}_\mu
+\partial_\nu,
+```
+
+而
+
+```math
+\partial^\mu
+```
+
+按 contravariant law 变换：
+
+```math
+\partial'^\mu
+=
+\Lambda^\mu{}_\rho
+\partial^\rho.
+```
+
+因此 contraction 以后：
+
+```math
+\partial'_\mu\partial'^\mu
+=
+(\Lambda^{-1})^\nu{}_\mu
+\Lambda^\mu{}_\rho
+\partial_\nu\partial^\rho.
+```
+
+由于
+
+```math
+(\Lambda^{-1})^\nu{}_\mu
+\Lambda^\mu{}_\rho
+=
+\delta^\nu{}_\rho,
+```
+
+得到
+
+```math
+\boxed{
+\partial'_\mu\partial'^\mu
+=
+\partial_\nu\partial^\nu.
+}
+```
+
+因此
+
+```math
+\boxed{
+\Box'=\Box.
+}
+```
+
+这和 four-vector inner product
+
+```math
+A_\mu B^\mu
+```
+
+Lorentz invariant 是完全相同的结构。
+
+一个 lower index 带来 $\Lambda^{-1}$，一个 upper index 带来 $\Lambda$，contract 以后两者抵消。
+
+---
+
+### 为什么这个算符重要？
+
+在 relativistic field theory 中，我们希望 field equation 在不同 inertial frames 中具有相同形式。
+
+例如 Klein–Gordon equation：
+
+```math
+\boxed{
+(\Box+m^2)\phi=0.
+}
+```
+
+因为 $\Box$ 是 Lorentz scalar operator，$m$ 也是 scalar，所以这个 equation 天然具有 Lorentz-covariant form。
+
+因此 $\Box$ 可以看成 relativistic theory 中非常自然的二阶 differential operator。
+
+---
+
+## Four-dimensional integration
+
+定义
+
+```math
+d^4x
+=
+dt\,dx\,dy\,dz.
+```
+
+因此 spacetime integral 写成
+
+```math
+\int d^4x.
+```
+
+在 field theory 中 action 通常写成
+
+```math
+\boxed{
+S
+=
+\int d^4x\,\mathcal L(x).
+}
+```
+
+Lorentz transformation 下
+
+```math
+x'=\Lambda x.
+```
+
+积分测度通过 Jacobian 变换：
+
+```math
+d^4x'
+=
+|\det\Lambda|\,d^4x.
+```
+
+对于 proper Lorentz transformation，
+
+```math
+\det\Lambda=+1,
+```
+
+所以
+
+```math
+\boxed{
+d^4x'=d^4x.
+}
+```
+
+如果 Lagrangian density 是 Lorentz scalar：
+
+```math
+\mathcal L'(x')
+=
+\mathcal L(x),
+```
+
+那么 action 满足
+
+```math
+\boxed{
+S'=S.
+}
+```
+
+所以四维积分是 relativistic field theory 的自然语言。
+
+---
+
+## 为什么 $d^3x$ 没有同样简单？
+
+三维积分
+
+```math
+\int d^3x
+```
+
+通常表示：
+
+> 在某个固定时刻，对整个空间积分。
+
+也就是在
+
+```math
+t=\text{const}
+```
+
+的三维 hypersurface 上积分。
+
+但是 Lorentz boost 会把时间和空间混合：
+
+```math
+t'
+=
+\gamma(t-\beta x).
+```
+
+因此即使两个事件在一个 frame 中满足
+
+```math
+t_1=t_2,
+```
+
+只要
+
+```math
+x_1\neq x_2,
+```
+
+一般就会有
+
+```math
+t'_1\neq t'_2.
+```
+
+所以：
+
+> 一个 observer 的“同时”并不是另一个 observer 的“同时”。
+
+这就是 relativity of simultaneity。
+
+因此 $d^3x$ 是某个特定 time slice 上的 measure，并不像 $d^4x$ 那样直接表现出 Lorentz invariance。
+
+---
+
+## Delta functions
+
+三维 delta function 满足
+
+```math
+\int d^3x\,
+\delta^{(3)}(\mathbf x-\mathbf a)
+f(\mathbf x)
+=
+f(\mathbf a).
+```
+
+它的作用是从积分中挑出
+
+```math
+\mathbf x=\mathbf a
+```
+
+这一点。
+
+四维版本为
+
+```math
+\delta^{(4)}(x),
+```
+
+满足
+
+```math
+\boxed{
+\int d^4x\,
+\delta^{(4)}(x-a)
+f(x)
+=
+f(a).
+}
+```
+
+并且
+
+```math
+\delta^{(4)}(x)
+=
+\delta(t)
+\delta(x)
+\delta(y)
+\delta(z).
+```
+
+---
+
+### 为什么四维 delta function 在 QFT 中重要？
+
+在 spacetime 中，
+
+```math
+\delta^{(4)}(x-y)
+```
+
+表示：
+
+```math
+x^\mu=y^\mu.
+```
+
+也就是两个 spacetime points 完全重合。
+
+因此它天然适合描述 locality。
+
+而在 momentum space 中，经常出现
+
+```math
+\boxed{
+(2\pi)^4
+\delta^{(4)}
+\left(
+p_{\mathrm{in}}-p_{\mathrm{out}}
+\right).
+}
+```
+
+这等价于同时要求
+
+```math
+E_{\mathrm{in}}
+=
+E_{\mathrm{out}},
+```
+
+以及
+
+```math
+\mathbf p_{\mathrm{in}}
+=
+\mathbf p_{\mathrm{out}}.
+```
+
+所以四维 delta function 直接编码
+
+```math
+\boxed{
+\text{four-momentum conservation}.
+}
+```
+
+---
+
+## Fourier transform
+
+相对论中自然使用 four-dimensional Fourier transform。
+
+一种常见 convention 是
+
+```math
+\boxed{
+\phi(x)
+=
+\int
+\frac{d^4p}{(2\pi)^4}
+e^{-ip\cdot x}
+\tilde\phi(p)
+}
+```
+
+以及 inverse transform：
+
+```math
+\boxed{
+\tilde\phi(p)
+=
+\int d^4x\,
+e^{ip\cdot x}
+\phi(x).
+}
+```
+
+不同教材可能交换正负号，只要前后一致即可。
+
+---
+
+### 为什么 exponent 写成 $p\cdot x$？
+
+因为
+
+```math
+p^\mu
+```
+
+和
+
+```math
+x^\mu
+```
+
+都是 four-vectors。
+
+因此
+
+```math
+p\cdot x
+=
+g_{\mu\nu}p^\mu x^\nu
+```
+
+是 Lorentz invariant。
+
+展开：
+
+```math
+\boxed{
+p\cdot x
+=
+Et-\mathbf p\cdot\mathbf x.
+}
+```
+
+Lorentz transformation 下
+
+```math
+p'=\Lambda p,
+\qquad
+x'=\Lambda x,
+```
+
+因此
+
+```math
+p'\cdot x'
+=
+p^T\Lambda^Tg\Lambda x.
+```
+
+由
+
+```math
+\Lambda^Tg\Lambda=g,
+```
+
+得到
+
+```math
+\boxed{
+p'\cdot x'
+=
+p\cdot x.
+}
+```
+
+所以 plane wave phase
+
+```math
+e^{-ip\cdot x}
+```
+
+是 Lorentz invariant。
+
+这就是为什么 relativistic theory 中 plane waves 自然写成 four-dimensional inner product 的形式。
+
+---
+
+## Fourier transform 的另一个关键作用
+
+在 momentum space 中，derivative 会变成 multiplication。
+
+如果
+
+```math
+\phi(x)
+\sim
+e^{-ip\cdot x},
+```
+
+那么
+
+```math
+\partial_\mu
+e^{-ip\cdot x}
+=
+-ip_\mu
+e^{-ip\cdot x}.
+```
+
+因此可以写成对应关系
+
+```math
+\boxed{
+\partial_\mu
+\longleftrightarrow
+-ip_\mu.
+}
+```
+
+于是
+
+```math
+\Box
+=
+\partial_\mu\partial^\mu
+```
+
+变成
+
+```math
+\boxed{
+\Box
+\longleftrightarrow
+-p_\mu p^\mu
+=
+-p^2.
+}
+```
+
+所以 differential equation 在 momentum space 中经常会变成 algebraic equation。
+
+例如：
+
+```math
+(\Box+m^2)\phi=0
+```
+
+Fourier transform 后变成
+
+```math
+(-p^2+m^2)\tilde\phi(p)=0.
+```
+
+因此
+
+```math
+\boxed{
+p^2=m^2.
+}
+```
+
+也就是
+
+```math
+\boxed{
+E^2-\mathbf p^2=m^2.
+}
+```
+
+所以 relativistic field equation 和 relativistic dispersion relation 在 Fourier space 中会非常直接地联系起来。
+
+---
+
+## Why these notations matter
+
+这些符号并不是彼此独立的技巧，而是在表达同一套 relativistic structure：
+
+```math
+\partial_\mu
+```
+
+是 four-dimensional derivative；
+
+```math
+\Box
+=
+\partial_\mu\partial^\mu
+```
+
+是 Lorentz-invariant differential operator；
+
+```math
+d^4x
+```
+
+是 natural spacetime integration measure；
+
+```math
+\delta^{(4)}(x)
+```
+
+用于表示 spacetime coincidence / locality；
+
+```math
+\delta^{(4)}
+(p_{\mathrm{in}}-p_{\mathrm{out}})
+```
+
+表示 four-momentum conservation；
+
+而
+
+```math
+e^{-ip\cdot x}
+```
+
+使用 Lorentz-invariant phase。
+
+Fourier transform 则连接
+
+```math
+\boxed{
+\text{spacetime description}
+\longleftrightarrow
+\text{energy-momentum description}.
+}
+```
+
+因此 Coleman 在这里补这些 notation，并不是单纯为了记号方便，而是在建立之后 QFT 中反复使用的 relativistic mathematical language。
+
 
 
 
