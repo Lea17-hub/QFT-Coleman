@@ -3423,6 +3423,121 @@ bU(R)|\psi_2\rangle.
 - linearity 描述 $U$ 如何作用在 quantum states 上；
 - representation property 描述不同 rotations 之间的 group structure 如何被保存。
 
+### A clarification: linearity is not the same as the group multiplication law
+
+这里我一开始有一个理解上的混淆。
+
+我看到
+
+```math
+U(R_1R_2)
+=
+U(R_1)U(R_2)
+```
+
+时，直觉上觉得这好像是在体现 $U$ 的“线性”。
+
+其实不是。
+
+$U$ 的 **linearity** 是指它作用在 Hilbert-space states 上时满足
+
+```math
+\boxed{
+U(R)
+\left(
+a|\psi_1\rangle+b|\psi_2\rangle
+\right)
+=
+aU(R)|\psi_1\rangle
++
+bU(R)|\psi_2\rangle.
+}
+```
+
+也就是说，linearity 描述的是：
+
+> 如果 quantum state 是两个 states 的 superposition，
+> 那么先叠加再做 symmetry transformation，
+> 和分别 transformation 后再叠加，
+> 得到相同结果。
+
+这是 $U(R)$ 作为一个 linear operator 在 Hilbert space 上的性质。
+
+而
+
+```math
+\boxed{
+U(R_1R_2)
+=
+U(R_1)U(R_2)
+}
+```
+
+描述的是另一件事：
+
+> rotation group 本身的 multiplication structure
+> 是否被 $U$ 保留下来。
+
+也就是说，
+
+```math
+R_1R_2
+```
+
+在 physical space 中表示两个 rotations 的 composition，
+
+而
+
+```math
+U(R_1)U(R_2)
+```
+
+则必须在 Hilbert space 中实现同样的 composition。
+
+所以：
+
+```math
+\boxed{
+\text{linearity}
+}
+```
+
+是关于
+
+```math
+U(R)
+```
+
+如何作用在
+
+```math
+a|\psi_1\rangle+b|\psi_2\rangle
+```
+
+上；
+
+而
+
+```math
+\boxed{
+\text{representation property}
+}
+```
+
+是关于
+
+```math
+R_1R_2
+```
+
+如何对应到
+
+```math
+U(R_1)U(R_2).
+```
+
+这两者不能混为一谈。
+
 ---
 
 ## Unitarity
