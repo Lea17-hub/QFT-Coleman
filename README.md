@@ -2983,6 +2983,735 @@ Fourier transform 则连接
 因此 Coleman 在这里补这些 notation，并不是单纯为了记号方便，而是在建立之后 QFT 中反复使用的 relativistic mathematical language。
 
 
+## First relativistic quantum system: a free spinless particle
 
+Coleman 考虑的第一个 relativistic quantum system 是：
 
+> 无限空间中的一个自由、无内部结构、不发生相互作用的单粒子。
 
+这里“无内部结构”意味着暂时没有：
+
+- spin；
+- internal excitation；
+- 其他内部 quantum numbers。
+
+因此描述这个单粒子状态时，最重要的自由度就是它的 momentum。
+
+---
+
+### Momentum eigenstates as a basis
+
+选择 momentum eigenstates
+
+```math
+|\mathbf p\rangle
+```
+
+作为 Hilbert space 的 basis。
+
+它们满足
+
+```math
+\hat{\mathbf P}|\mathbf p\rangle
+=
+\mathbf p|\mathbf p\rangle.
+```
+
+这里最开始我的疑问是：
+
+> 是不是因为这个粒子没有内部结构，所以只用 momentum 就可以描述它？
+
+更准确地说，并不是粒子“只有一个态”，而是所有不同的
+
+```math
+|\mathbf p\rangle
+```
+
+构成了一组 basis states。
+
+一个一般的 quantum state 可以写成这些 momentum eigenstates 的线性叠加：
+
+```math
+\boxed{
+|\psi\rangle
+=
+\int d^3p\,
+\psi(\mathbf p)
+|\mathbf p\rangle
+}
+```
+
+其中
+
+```math
+\psi(\mathbf p)
+=
+\langle\mathbf p|\psi\rangle
+```
+
+是这个 state 在 momentum basis 中的 coefficients，也就是 momentum-space wavefunction。
+
+---
+
+## Wave packet
+
+单独一个 definite-momentum state
+
+```math
+|\mathbf p\rangle
+```
+
+在 position representation 中对应 plane wave：
+
+```math
+\langle x|p\rangle
+\propto
+e^{-ip\cdot x}.
+```
+
+这样的 wave 并不 localized，而是铺满整个空间。
+
+一个真实的 localized state 通常需要把很多不同 momentum 的 plane waves 叠加：
+
+```math
+\psi(x)
+=
+\int d^3p\,
+f(\mathbf p)
+e^{i\mathbf p\cdot\mathbf x}.
+```
+
+这样的 superposition 就叫做 wave packet。
+
+因此可以先这样理解：
+
+```math
+\boxed{
+\text{definite momentum}
+\Rightarrow
+\text{plane wave, delocalized}
+}
+```
+
+而
+
+```math
+\boxed{
+\text{superposition of momenta}
+\Rightarrow
+\text{wave packet, can be localized}
+}
+```
+
+---
+
+## Abstract state and wavefunction
+
+这里还需要区分
+
+```math
+|\psi\rangle
+```
+
+和
+
+```math
+\psi(x).
+```
+
+真正的 quantum state 是 abstract Hilbert-space vector
+
+```math
+|\psi\rangle.
+```
+
+position-space wavefunction 是它在 position basis 下的 components：
+
+```math
+\boxed{
+\psi(x)
+=
+\langle x|\psi\rangle.
+}
+```
+
+同样，在 momentum basis 中：
+
+```math
+\boxed{
+\tilde\psi(\mathbf p)
+=
+\langle\mathbf p|\psi\rangle.
+}
+```
+
+所以
+
+```math
+|\psi\rangle,
+\qquad
+\psi(x),
+\qquad
+\tilde\psi(\mathbf p)
+```
+
+不是三个不同的 physical states。
+
+它们是同一个 state 在不同 representation / basis 下的表示。
+
+因此
+
+```math
+e^{-ip\cdot x}
+```
+
+也不是说“quantum state 本身就是一个 exponential function”，而是 momentum eigenstate
+
+```math
+|p\rangle
+```
+
+在 position basis 中的 representation。
+
+---
+
+## Energy and the mass shell
+
+对于 invariant mass 为
+
+```math
+\mu
+```
+
+的自由粒子，
+
+```math
+p^\mu=(E,\mathbf p).
+```
+
+four-momentum 的 Minkowski norm 是
+
+```math
+p^\mu p_\mu
+=
+E^2-\mathbf p^2.
+```
+
+对于这个粒子：
+
+```math
+\boxed{
+p^\mu p_\mu=\mu^2.
+}
+```
+
+也就是
+
+```math
+\boxed{
+E^2-\mathbf p^2=\mu^2.
+}
+```
+
+因此
+
+```math
+E^2
+=
+\mathbf p^2+\mu^2,
+```
+
+取正能量 branch：
+
+```math
+\boxed{
+E_{\mathbf p}
+=
+\sqrt{\mathbf p^2+\mu^2}.
+}
+```
+
+这里一开始我的疑问是：
+
+> Minkowski norm 明明是 $E^2-\mathbf p^2$，为什么 energy formula 里面变成了加号？
+
+原因只是把
+
+```math
+E^2-\mathbf p^2=\mu^2
+```
+
+移项：
+
+```math
+E^2=\mathbf p^2+\mu^2.
+```
+
+没有出现新的物理量。
+
+---
+
+### What is the mass shell?
+
+```math
+\boxed{
+p^2=\mu^2
+}
+```
+
+不是在定义一种新的质量，而是在说：
+
+> 对一个 invariant mass 固定为 $\mu$ 的粒子，允许的 four-momenta $(E,\mathbf p)$ 必须满足这个条件。
+
+所有满足
+
+```math
+E^2-\mathbf p^2=\mu^2
+```
+
+的 four-momenta 在 momentum space 中形成一个 hypersurface，叫做 mass shell。
+
+因此：
+
+```math
+\mu
+```
+
+是粒子固定的 Lorentz-invariant mass；
+
+而
+
+```math
+E,\mathbf p
+```
+
+会随着 particle state 和 observer 改变。
+
+但无论如何，
+
+```math
+\boxed{
+E^2-\mathbf p^2=\mu^2
+}
+```
+
+保持不变。
+
+在 rest frame：
+
+```math
+\mathbf p=0,
+```
+
+所以
+
+```math
+E_{\mathrm{rest}}=\mu
+```
+
+因为这里使用
+
+```math
+c=1.
+```
+
+恢复单位就是
+
+```math
+E_{\mathrm{rest}}=\mu c^2.
+```
+
+以后这里的 mass 都理解为 invariant mass。
+
+---
+
+## What does rotational invariance mean in quantum mechanics?
+
+经典空间中的 rotation 用
+
+```math
+R
+```
+
+表示。
+
+它可以直接作用在 ordinary vectors 上：
+
+```math
+\mathbf p
+\longrightarrow
+R\mathbf p.
+```
+
+但是 quantum state
+
+```math
+|\psi\rangle
+```
+
+不属于 ordinary three-dimensional physical space，而属于 Hilbert space。
+
+因此不能简单把同一个 matrix $R$ 直接作用在
+
+```math
+|\psi\rangle
+```
+
+上。
+
+我们需要在 Hilbert space 中找到一个 operator
+
+```math
+\boxed{
+U(R)
+}
+```
+
+来实现 physical rotation $R$。
+
+所以：
+
+```math
+R
+```
+
+描述 physical space 中的 rotation；
+
+而
+
+```math
+U(R)
+```
+
+描述同一个 symmetry 在 Hilbert space 上怎样作用。
+
+---
+
+## Why is $U(R)$ linear?
+
+Quantum mechanics 的 states 可以 superpose：
+
+```math
+|\psi\rangle
+=
+a|\psi_1\rangle
++
+b|\psi_2\rangle.
+```
+
+rotation 不应该破坏这种 superposition structure。
+
+因此必须要求
+
+```math
+\boxed{
+U(R)
+\left(
+a|\psi_1\rangle+b|\psi_2\rangle
+\right)
+=
+aU(R)|\psi_1\rangle
++
+bU(R)|\psi_2\rangle.
+}
+```
+
+所以 symmetry transformation 在 Hilbert space 上由 linear operator 实现。
+
+这里的 linearity 和后面的 group multiplication property 是两个不同的要求：
+
+- linearity 描述 $U$ 如何作用在 quantum states 上；
+- representation property 描述不同 rotations 之间的 group structure 如何被保存。
+
+---
+
+## Unitarity
+
+rotation 是 physical symmetry，所以不应该改变 transition probabilities。
+
+因此要求 inner product 保持不变：
+
+```math
+\langle U(R)\psi|U(R)\phi\rangle
+=
+\langle\psi|\phi\rangle.
+```
+
+而
+
+```math
+\langle U\psi|U\phi\rangle
+=
+\langle\psi|
+U^\dagger U
+|\phi\rangle.
+```
+
+所以必须有
+
+```math
+\boxed{
+U^\dagger(R)U(R)=I.
+}
+```
+
+也就是
+
+```math
+\boxed{
+U^{-1}(R)=U^\dagger(R).
+}
+```
+
+因此 $U(R)$ 是 unitary operator。
+
+物理意义：
+
+> symmetry transformation 必须保持 quantum inner products，从而保持 probabilities。
+
+---
+
+## Preserving the group structure
+
+如果 physical rotations 满足
+
+```math
+R_1R_2=R_3,
+```
+
+那么它们在 Hilbert space 上的 operators 也应该实现相同的 composition：
+
+```math
+\boxed{
+U(R_1)U(R_2)
+=
+U(R_1R_2).
+}
+```
+
+也就是说：
+
+> 先做 $R_2$ 再做 $R_1$，应该和直接做 combined rotation $R_1R_2$ 对应。
+
+因此 map
+
+```math
+\boxed{
+R\longmapsto U(R)
+}
+```
+
+保留了 rotation group 的 multiplication structure。
+
+这就是一个 group representation。
+
+所以：
+
+> $U(R)$ 是 rotation group 在 Hilbert space 上的 unitary representation。
+
+---
+
+## Overall phase and projective representations
+
+Quantum mechanics 中，
+
+```math
+|\psi\rangle
+```
+
+和
+
+```math
+e^{i\alpha}|\psi\rangle
+```
+
+代表同一个 physical state。
+
+这里
+
+```math
+\alpha
+```
+
+不是 rotation angle，而是 quantum state 的 overall phase。
+
+因为
+
+```math
+|e^{i\alpha}|=1,
+```
+
+所以例如 transition probability：
+
+```math
+|\langle\phi|\psi\rangle|^2
+```
+
+在
+
+```math
+|\psi\rangle
+\rightarrow
+e^{i\alpha}|\psi\rangle
+```
+
+以后不会改变。
+
+因此 physical state 更准确地说是 Hilbert space 中的一条 ray：
+
+```math
+\boxed{
+|\psi\rangle
+\sim
+e^{i\alpha}|\psi\rangle.
+}
+```
+
+所以 representation law 在 quantum mechanics 中可以稍微放宽。
+
+不一定严格要求
+
+```math
+U(R_1)U(R_2)
+=
+U(R_1R_2),
+```
+
+而可以允许：
+
+```math
+\boxed{
+U(R_1)U(R_2)
+=
+e^{i\omega(R_1,R_2)}
+U(R_1R_2).
+}
+```
+
+其中
+
+```math
+\omega(R_1,R_2)
+```
+
+是由这两个 group elements 决定的 phase function。
+
+因为两边作用到 state 上以后只差一个 overall phase，所以代表相同的 physical state。
+
+这叫做 projective representation。
+
+---
+
+## Why half-integer spin makes this important
+
+这一点在 spin-$\frac12$ 中尤其重要。
+
+spin-$\frac12$ 的 rotation operator 具有形式
+
+```math
+U(R(\theta))
+=
+e^{-i\theta\,\mathbf n\cdot\boldsymbol\sigma/2}.
+```
+
+因此 exponent 中出现
+
+```math
+\frac{\theta}{2}.
+```
+
+对于 ordinary spatial rotation：
+
+```math
+R(2\pi)=I.
+```
+
+但对于 spin-$\frac12$ state：
+
+```math
+U(2\pi)=-I.
+```
+
+所以
+
+```math
+|\psi\rangle
+\longrightarrow
+-|\psi\rangle
+=
+e^{i\pi}|\psi\rangle.
+```
+
+它与原来的 state 只差一个 overall phase，因此仍然代表同一个 physical state。
+
+而
+
+```math
+U(4\pi)=I.
+```
+
+Coleman 在这里暂时忽略 projective representation 的细节，是因为当前讨论的是 spinless particle，不需要马上进入 half-integer spin 和 $SU(2)$ 的结构。
+
+---
+
+## Current understanding
+
+这一部分真正建立的是：
+
+```math
+\boxed{
+\text{physical spacetime symmetry}
+\longrightarrow
+\text{unitary operators on Hilbert space}
+}
+```
+
+对于 rotations：
+
+```math
+R
+\longmapsto
+U(R).
+```
+
+其中：
+
+```math
+U^\dagger(R)U(R)=I
+```
+
+保证 quantum probabilities 不变；
+
+而
+
+```math
+U(R_1R_2)
+=
+U(R_1)U(R_2)
+```
+
+保证 rotation group 的 algebraic structure 被保留下来。
+
+自由 spinless particle 则用
+
+```math
+|\mathbf p\rangle
+```
+
+作为 momentum basis，并满足 mass-shell condition
+
+```math
+\boxed{
+p^2=\mu^2.
+}
+```
+
+因此 Coleman 这里开始真正把前面讨论的 spacetime symmetry 和 quantum Hilbert space 接到一起：
+
+```math
+\boxed{
+\text{Lorentz / rotation group}
+\quad\longrightarrow\quad
+\text{representations on quantum states}.
+}
+```
