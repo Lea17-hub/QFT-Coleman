@@ -3830,3 +3830,1400 @@ p^2=\mu^2.
 \text{representations on quantum states}.
 }
 ```
+
+## Spacetime translations in quantum mechanics
+
+Coleman 接下来把之前讨论的 Lorentz symmetry 扩展到 translations。
+
+对于无限空间中的 free relativistic particle，连续的 spacetime symmetries 构成 connected Poincaré group：
+
+```math
+\boxed{
+\mathcal P^\uparrow_+
+=
+\mathbb R^{1,3}\rtimes SO^+(3,1).
+}
+```
+
+一共有 10 个 continuous generators：
+
+```math
+3\ \text{rotations}
++
+3\ \text{boosts}
++
+3\ \text{spatial translations}
++
+1\ \text{time translation}.
+```
+
+其中容易混淆的是：
+
+- time translation 是
+  ```math
+  t\to t+a^0,
+  ```
+  并不是 time reversal
+  ```math
+  t\to -t;
+  ```
+- parity 和 time reversal 是 discrete transformations，不属于 identity-connected Poincaré group；
+- translation / rotation 也不是任意系统都一定具有的 symmetry。例如固定在某处的 external potential 会破坏 spatial translation symmetry；
+- 以后还会出现 internal symmetries，它们不是 spacetime transformations。
+
+因此一个 transformation 数学上存在，并不自动意味着某个具体 physical system 具有这个 symmetry。
+
+---
+
+## Translation operators
+
+在 quantum mechanics 中，physical spacetime transformation 必须通过 Hilbert space 上的 operator 来实现。
+
+对于 spatial translation
+
+```math
+\mathbf x\to\mathbf x+\mathbf a,
+```
+
+对应的 unitary operator 写成
+
+```math
+\boxed{
+U(\mathbf a)
+=
+e^{-i\mathbf a\cdot\mathbf P}
+}
+```
+
+其中
+
+```math
+\mathbf P
+```
+
+是 momentum operator，也是 spatial translation 的 generator。
+
+这里一开始我的直觉是：
+
+> 是不是因为 momentum eigenstate 本身包含 exponential，所以从 wavefunction 的形式反推出 translation operator 也是 exponential？
+
+这种方法可以用来检查结果，但不是最根本的理由。
+
+更根本的结构是：
+
+```math
+\boxed{
+\text{continuous unitary transformation}
+\Rightarrow
+\text{Hermitian generator}
+\Rightarrow
+U(a)=e^{-iaG}.
+}
+```
+
+---
+
+## Why does a continuous unitary transformation have an exponential form?
+
+对于 infinitesimal continuous transformation，
+
+```math
+U(\epsilon)
+=
+I+\epsilon A+O(\epsilon^2).
+```
+
+unitarity 要求
+
+```math
+U^\dagger U=I.
+```
+
+保留到一阶：
+
+```math
+A^\dagger+A=0.
+```
+
+所以
+
+```math
+A
+```
+
+必须是 anti-Hermitian。
+
+任何 anti-Hermitian operator 都可以写成
+
+```math
+A=-iG,
+```
+
+其中
+
+```math
+G^\dagger=G.
+```
+
+因此
+
+```math
+U(\epsilon)
+=
+I-i\epsilon G+O(\epsilon^2).
+```
+
+把无数个 infinitesimal transformations 连续累积：
+
+```math
+U(a)
+=
+\lim_{N\to\infty}
+\left(
+1-i\frac{a}{N}G
+\right)^N,
+```
+
+得到
+
+```math
+\boxed{
+U(a)=e^{-iaG}.
+}
+```
+
+所以 exponential 和其中的 $i$ 并不是特殊地来自 momentum。
+
+它们首先来自：
+
+```math
+\boxed{
+\text{continuity + unitarity}.
+}
+```
+
+其中 $G$ 是 Hermitian generator，而 $-iG$ 是 anti-Hermitian，所以
+
+```math
+e^{-iaG}
+```
+
+是 unitary。
+
+---
+
+## Why is momentum the generator of spatial translations?
+
+在 position representation 中，把整个 state 向右移动一个小距离 $\epsilon$：
+
+```math
+\psi(x)
+\longrightarrow
+\psi(x-\epsilon).
+```
+
+Taylor expansion：
+
+```math
+\psi(x-\epsilon)
+=
+\psi(x)
+-
+\epsilon\frac{d\psi}{dx}
++
+O(\epsilon^2).
+```
+
+因此 infinitesimal translation 是
+
+```math
+U(\epsilon)
+=
+1-\epsilon\partial_x+\cdots.
+```
+
+另一方面，任何 continuous unitary transformation 都可以写成
+
+```math
+U(\epsilon)
+=
+1-i\epsilon G+\cdots.
+```
+
+比较：
+
+```math
+-iG=-\partial_x,
+```
+
+所以
+
+```math
+\boxed{
+G=-i\partial_x.
+}
+```
+
+这个 spatial-translation generator 就是 momentum operator：
+
+```math
+\boxed{
+\hat p=-i\partial_x
+}
+```
+
+在 $\hbar=1$ 的单位下。
+
+恢复 $\hbar$：
+
+```math
+\boxed{
+\hat p=-i\hbar\partial_x.
+}
+```
+
+因此 plane wave relation
+
+```math
+-i\partial_x e^{ipx}
+=
+p e^{ipx}
+```
+
+更适合看成 consistency check，而不是 momentum operator 最根本的来源。
+
+---
+
+## Four-dimensional translations
+
+把 energy 和 momentum 组合成 four-momentum operator：
+
+```math
+\boxed{
+P^\mu=(H,\mathbf P).
+}
+```
+
+这里
+
+```math
+H
+```
+
+不是时间，而是 Hamiltonian / energy operator。
+
+translation parameter 是
+
+```math
+a^\mu=(a^0,\mathbf a).
+```
+
+因此 spacetime translation 可以统一写成
+
+```math
+\boxed{
+U(a)
+=
+e^{-iP_\mu a^\mu}
+}
+```
+
+或者采用等价的 index/sign convention。
+
+在 metric
+
+```math
+g_{\mu\nu}
+=
+\mathrm{diag}(1,-1,-1,-1)
+```
+
+下，
+
+```math
+P_\mu a^\mu
+=
+Ha^0-\mathbf P\cdot\mathbf a.
+```
+
+因此 exponent 展开时 spatial part 会出现相反的 sign：
+
+```math
+-iP_\mu a^\mu
+=
+-iHa^0
++
+i\mathbf P\cdot\mathbf a.
+```
+
+具体整体 sign 会随 active/passive convention 改变，重要的是保持同一 convention 内部一致。
+
+---
+
+## Translations commute
+
+ordinary spacetime translations 是 Abelian 的。
+
+例如：
+
+```math
+T(a)T(b)
+=
+T(a+b)
+=
+T(b)T(a).
+```
+
+因此 Hilbert-space representation 也必须保持这一 group structure。
+
+在 generators 的语言中：
+
+```math
+\boxed{
+[P^\mu,P^\nu]=0.
+}
+```
+
+特别地：
+
+```math
+[P_i,P_j]=0,
+```
+
+以及对于 translation-invariant system：
+
+```math
+[H,P_i]=0.
+```
+
+这里再次要区分：
+
+- linearity 是
+  ```math
+  U(a)
+  \bigl(
+  c_1|\psi_1\rangle+c_2|\psi_2\rangle
+  \bigr)
+  =
+  c_1U(a)|\psi_1\rangle
+  +
+  c_2U(a)|\psi_2\rangle;
+  ```
+
+- group representation property 是
+  ```math
+  U(a)U(b)=U(a+b).
+  ```
+
+它们不是同一个性质。
+
+---
+
+## What does unitarity guarantee?
+
+如果
+
+```math
+U^\dagger U=I,
+```
+
+那么 inner product 保持不变：
+
+```math
+\langle U\psi|U\phi\rangle
+=
+\langle\psi|\phi\rangle.
+```
+
+特别地，
+
+```math
+\langle U\psi|U\psi\rangle
+=
+\langle\psi|\psi\rangle.
+```
+
+因此 normalized state 在 symmetry transformation 以后仍然 normalized，transition probabilities 也不会改变。
+
+所以 unitarity 的物理意义不是简单地说：
+
+> “概率等于 1”。
+
+而是：
+
+```math
+\boxed{
+\text{quantum inner products and probabilities are preserved}.
+}
+```
+
+---
+
+## Not every physical operator is unitary
+
+这里我一开始也混淆了。
+
+quantum mechanics 中，不同种类的 operator 有不同要求。
+
+Observable 通常由 Hermitian operator 表示：
+
+```math
+\boxed{
+\hat A^\dagger=\hat A.
+}
+```
+
+例如：
+
+```math
+\hat x,\qquad
+\hat p,\qquad
+\hat H.
+```
+
+而 symmetry transformations / closed-system time evolution 由 unitary operators 表示：
+
+```math
+\boxed{
+U^\dagger U=I.
+}
+```
+
+两者之间的典型关系是：
+
+```math
+\boxed{
+\text{Hermitian generator}
+\xrightarrow{\exp[-i(\text{parameter})(\text{generator})]}
+\text{unitary transformation}.
+}
+```
+
+例如：
+
+```math
+\hat P
+\longrightarrow
+e^{-ia\hat P},
+```
+
+```math
+\hat H
+\longrightarrow
+e^{-it\hat H},
+```
+
+```math
+\hat J
+\longrightarrow
+e^{-i\theta\hat J}.
+```
+
+---
+
+# Why is $H$ both energy and the generator of time translations?
+
+这一点不能只从 quantum mechanics 的 exponential formula 中看出来。
+
+它在 classical Hamiltonian mechanics 中已经存在。
+
+---
+
+## Lagrangian mechanics and Euler–Lagrange equation
+
+从 action 开始：
+
+```math
+S[q]
+=
+\int_{t_1}^{t_2}
+L(q,\dot q,t)\,dt.
+```
+
+真实 trajectory 满足
+
+```math
+\delta S=0.
+```
+
+由 variation 和 integration by parts 得到 Euler–Lagrange equation：
+
+```math
+\boxed{
+\frac{d}{dt}
+\frac{\partial L}{\partial\dot q}
+-
+\frac{\partial L}{\partial q}
+=
+0.
+}
+```
+
+定义 canonical momentum：
+
+```math
+\boxed{
+p
+=
+\frac{\partial L}{\partial\dot q}.
+}
+```
+
+对于
+
+```math
+L
+=
+\frac12m\dot q^2-V(q),
+```
+
+得到
+
+```math
+p=m\dot q.
+```
+
+---
+
+## Spatial translation and momentum conservation
+
+如果系统没有特殊空间位置，则
+
+```math
+q\to q+\epsilon
+```
+
+是 symmetry。
+
+这意味着 Lagrangian 没有 explicit dependence on $q$：
+
+```math
+\frac{\partial L}{\partial q}=0.
+```
+
+Euler–Lagrange equation 立刻给出：
+
+```math
+\frac{dp}{dt}=0.
+```
+
+所以：
+
+```math
+\boxed{
+\text{spatial translation symmetry}
+\Rightarrow
+\text{momentum conservation}.
+}
+```
+
+这在 quantum mechanics 出现以前已经成立。
+
+---
+
+## Time translation and energy conservation
+
+考虑
+
+```math
+L=L(q,\dot q,t).
+```
+
+全时间导数：
+
+```math
+\frac{dL}{dt}
+=
+\frac{\partial L}{\partial q}\dot q
++
+\frac{\partial L}{\partial\dot q}\ddot q
++
+\frac{\partial L}{\partial t}.
+```
+
+利用 Euler–Lagrange equation：
+
+```math
+\frac{\partial L}{\partial q}
+=
+\frac{d}{dt}
+\frac{\partial L}{\partial\dot q},
+```
+
+可以整理成：
+
+```math
+\boxed{
+\frac{d}{dt}
+\left(
+\dot q
+\frac{\partial L}{\partial\dot q}
+-L
+\right)
+=
+-
+\frac{\partial L}{\partial t}.
+}
+```
+
+定义 Hamiltonian：
+
+```math
+\boxed{
+H
+=
+p\dot q-L.
+}
+```
+
+于是：
+
+```math
+\boxed{
+\frac{dH}{dt}
+=
+-
+\frac{\partial L}{\partial t}.
+}
+```
+
+如果系统具有 time-translation symmetry，那么物理规律不依赖绝对时间原点。
+
+因此 Lagrangian 没有 explicit time dependence：
+
+```math
+\boxed{
+\frac{\partial L}{\partial t}=0.
+}
+```
+
+于是：
+
+```math
+\boxed{
+\frac{dH}{dt}=0.
+}
+```
+
+所以 $H$ conserved。
+
+---
+
+## Why partial derivative rather than total derivative?
+
+time-translation symmetry 要求的不是：
+
+```math
+\frac{dL}{dt}=0.
+```
+
+因为沿着实际 trajectory，
+
+```math
+q=q(t),
+\qquad
+\dot q=\dot q(t),
+```
+
+即使 Lagrangian 的公式本身不显含 $t$，它的数值也完全可以随着 motion 改变。
+
+例如：
+
+```math
+L
+=
+\frac12m\dot q^2-V(q)
+```
+
+满足
+
+```math
+\frac{\partial L}{\partial t}=0,
+```
+
+但通常
+
+```math
+\frac{dL}{dt}\neq0.
+```
+
+所以：
+
+```math
+\boxed{
+\frac{\partial L}{\partial t}
+}
+```
+
+测量的是 explicit time dependence；
+
+而
+
+```math
+\boxed{
+\frac{dL}{dt}
+}
+```
+
+测量的是 $L$ 沿实际 trajectory 的总变化。
+
+这让我进一步明确了：
+
+> symmetry 要求的是 physical law 的形式在 transformation 下不变，并不是要求某一个 quantity 的 numerical value 不变。
+
+Noether theorem 正是在这两件事之间建立联系：
+
+```math
+\boxed{
+\text{form invariance under a continuous transformation}
+\Rightarrow
+\text{existence of a conserved quantity}.
+}
+```
+
+---
+
+## Why is $H$ called energy?
+
+对于普通 mechanical system：
+
+```math
+L=T-V
+=
+\frac12m\dot q^2-V(q).
+```
+
+有
+
+```math
+p=m\dot q.
+```
+
+所以
+
+```math
+H
+=
+p\dot q-L
+```
+
+变成
+
+```math
+H
+=
+m\dot q^2
+-
+\left(
+\frac12m\dot q^2-V
+\right),
+```
+
+即
+
+```math
+\boxed{
+H
+=
+\frac12m\dot q^2+V
+=
+T+V.
+}
+```
+
+也就是普通 mechanical energy。
+
+因此：
+
+```math
+\boxed{
+\text{time-translation Noether charge}
+=
+H
+=
+E.
+}
+```
+
+这并不是 quantum mechanics 后来人为规定的。
+
+它在 classical mechanics 中已经存在。
+
+---
+
+## Hamiltonian as generator of classical time evolution
+
+Hamiltonian 不仅等于 energy，它还决定 classical state 如何随时间变化。
+
+由
+
+```math
+H=p\dot q-L
+```
+
+可以推出 Hamilton equations：
+
+```math
+\boxed{
+\dot q
+=
+\frac{\partial H}{\partial p},
+}
+```
+
+```math
+\boxed{
+\dot p
+=
+-\frac{\partial H}{\partial q}.
+}
+```
+
+更一般地，对于 classical observable
+
+```math
+A(q,p,t),
+```
+
+有
+
+```math
+\boxed{
+\frac{dA}{dt}
+=
+\{A,H\}
++
+\frac{\partial A}{\partial t}.
+}
+```
+
+所以 $H$ 通过 Poisson bracket 生成 classical time evolution。
+
+因此在 classical mechanics 中已经同时有：
+
+```math
+\boxed{
+H=\text{energy}
+}
+```
+
+和
+
+```math
+\boxed{
+H=\text{generator of time evolution}.
+}
+```
+
+---
+
+# Noether theorem: what is it actually saying?
+
+Noether theorem 不是一句哲学口号。
+
+它的数学内容是：
+
+> 如果 action 在某个 continuous infinitesimal transformation 下 invariant，那么利用 Euler–Lagrange equations，可以把这个 invariance condition 改写成一个 conserved quantity 的 total derivative：
+
+```math
+\boxed{
+\frac{dQ}{dt}=0.
+}
+```
+
+因此：
+
+```math
+\boxed{
+\text{continuous symmetry}
+\longrightarrow
+\text{conserved Noether quantity}.
+}
+```
+
+具体来说：
+
+```math
+\text{time translation}
+\longrightarrow
+E,
+```
+
+```math
+\text{spatial translation}
+\longrightarrow
+\mathbf P,
+```
+
+```math
+\text{rotation}
+\longrightarrow
+\mathbf J.
+```
+
+所以这些物理对应关系在 quantum mechanics 之前就已经存在。
+
+---
+
+# Classical mechanics to quantum mechanics
+
+今天进一步澄清了：
+
+> quantum mechanics 并没有发明
+> “energy ↔ time translation”
+> 或
+> “momentum ↔ spatial translation”。
+
+这些结构在 classical Hamiltonian mechanics 中已经存在。
+
+quantum mechanics 保留了这种 generator structure，但改变了数学对象。
+
+---
+
+## Classical state and observable
+
+classical state 是 phase space 中的点：
+
+```math
+(q,p).
+```
+
+classical observable 是 phase space 上的 function：
+
+```math
+A(q,p).
+```
+
+一旦 state $(q,p)$ 给定，
+
+```math
+A(q,p)
+```
+
+就是一个确定值。
+
+---
+
+## Quantum state and observable
+
+quantum state 是 Hilbert space vector / ray：
+
+```math
+|\psi\rangle.
+```
+
+quantum observable 是 Hermitian operator：
+
+```math
+\hat A.
+```
+
+而 expectation value 是：
+
+```math
+\boxed{
+\langle A\rangle_\psi
+=
+\langle\psi|\hat A|\psi\rangle.
+}
+```
+
+所以：
+
+```math
+\boxed{
+\hat A
+\neq
+\langle\hat A\rangle.
+}
+```
+
+observable 是 operator；
+
+expectation value 是对于某个 state 得到的一个 number。
+
+可能的 measurement outcomes 则是 $\hat A$ 的 eigenvalues：
+
+```math
+\hat A|a_n\rangle
+=
+a_n|a_n\rangle.
+```
+
+---
+
+## Classical and quantum algebra
+
+classical observables 是普通 functions，所以 multiplication commutes：
+
+```math
+qp=pq.
+```
+
+quantum observables 是 operators，一般不 commute：
+
+```math
+\boxed{
+[\hat q,\hat p]=i\hbar.
+}
+```
+
+因此 classical expression
+
+```math
+qp
+```
+
+quantize 以后可能对应：
+
+```math
+\hat q\hat p
+```
+
+或者
+
+```math
+\hat p\hat q,
+```
+
+而它们不同。
+
+这产生 ordering ambiguity。
+
+例如：
+
+```math
+q^2p
+=
+qpq
+=
+pq^2
+```
+
+在 classical mechanics 中完全相同；
+
+但量子中：
+
+```math
+\hat q^2\hat p,
+\qquad
+\hat q\hat p\hat q,
+\qquad
+\hat p\hat q^2
+```
+
+一般不同。
+
+所以：
+
+```math
+\boxed{
+\text{classical multiplication forgets order},
+}
+```
+
+而
+
+```math
+\boxed{
+\text{quantum operator multiplication remembers order}.
+}
+```
+
+---
+
+## Poisson brackets and commutators
+
+classical dynamics：
+
+```math
+\boxed{
+\frac{dA}{dt}
+=
+\{A,H\}
++
+\frac{\partial A}{\partial t}.
+}
+```
+
+quantum dynamics：
+
+```math
+\boxed{
+\frac{d\hat A}{dt}
+=
+\frac{i}{\hbar}
+[\hat H,\hat A]
++
+\frac{\partial\hat A}{\partial t}.
+}
+```
+
+所以存在结构对应：
+
+```math
+\boxed{
+\{A,B\}
+\quad\longleftrightarrow\quad
+\frac{1}{i\hbar}
+[\hat A,\hat B].
+}
+```
+
+这说明 quantum mechanics 并不是简单抛弃 classical Hamiltonian mechanics，而是保留了它的 dynamical algebraic structure，并把 phase-space functions 替换成 Hilbert-space operators。
+
+---
+
+## Why $i$ appears again in quantum evolution
+
+quantum time evolution 是：
+
+```math
+\boxed{
+U(t)=e^{-iHt/\hbar}.
+}
+```
+
+因为
+
+```math
+H^\dagger=H,
+```
+
+所以
+
+```math
+-\frac{i}{\hbar}Ht
+```
+
+是 anti-Hermitian。
+
+因此
+
+```math
+U^\dagger U=I.
+```
+
+所以这里的 $i$ 和 translation operator 中的 $i$ 是同一套结构：
+
+```math
+\boxed{
+\text{Hermitian generator}
+\xrightarrow{-i}
+\text{anti-Hermitian exponent}
+\xrightarrow{\exp}
+\text{unitary transformation}.
+}
+```
+
+---
+
+## Classical superposition vs quantum superposition
+
+这里也澄清了另一个容易混淆的地方。
+
+classical linear field theory 中也有 superposition，例如：
+
+```math
+E=E_1+E_2.
+```
+
+这表示 classical field amplitudes 本身相加。
+
+quantum mechanics 中：
+
+```math
+|\psi\rangle
+=
+a|\psi_1\rangle
++
+b|\psi_2\rangle
+```
+
+表示 physical state vector 本身是两个 alternatives 的 coherent superposition。
+
+所以：
+
+```math
+\boxed{
+\text{classical superposition}
+=
+\text{solutions / fields add}
+}
+```
+
+而
+
+```math
+\boxed{
+\text{quantum superposition}
+=
+\text{physical state vectors / amplitudes add}.
+}
+```
+
+这两种 linearity 的数学形式相似，但物理解释不同。
+
+---
+
+## Planck scale is not the quantum/classical boundary
+
+最后还澄清了一个概念：
+
+Planck scale 不是 classical mechanics 和 quantum mechanics 的一般分界。
+
+quantum effects 的重要程度首先与 $\hbar$ 有关，例如典型 action 与 $\hbar$ 的比例：
+
+```math
+\frac{S}{\hbar}.
+```
+
+当
+
+```math
+S\gg\hbar
+```
+
+时，classical limit 往往出现。
+
+Planck scale 则把
+
+```math
+\hbar,\qquad c,\qquad G
+```
+
+同时组合起来。
+
+例如：
+
+```math
+\ell_P
+=
+\sqrt{
+\frac{\hbar G}{c^3}
+}.
+```
+
+它主要标志：
+
+```math
+\boxed{
+\text{quantum mechanics}
++
+\text{relativity}
++
+\text{gravity}
+}
+```
+
+可能同时不可忽略的 regime。
+
+因此要区分：
+
+```math
+\boxed{
+\text{quantum vs classical}
+}
+```
+
+```math
+\boxed{
+\text{relativistic vs nonrelativistic}
+}
+```
+
+和
+
+```math
+\boxed{
+\text{quantum gravity / Planck scale}.
+}
+```
+
+它们不是同一条边界。
+
+---
+
+## What I clarified today
+
+课程本身这一小段只是说：
+
+```math
+\boxed{
+\text{Poincaré symmetry also includes spacetime translations}
+}
+```
+
+并引入：
+
+```math
+U(a)
+=
+e^{-ia_\mu P^\mu},
+```
+
+其中
+
+```math
+P^\mu=(H,\mathbf P).
+```
+
+translations commute：
+
+```math
+[P^\mu,P^\nu]=0.
+```
+
+而这些 transformations 由 unitary operators 实现。
+
+但由此我需要重新澄清了几个更基础的问题：
+
+1. exponential form 的根源不是 plane wave，而是 continuous unitary transformations 由 Hermitian generators 生成；
+
+2. momentum 是 spatial translation generator，因为 infinitesimal coordinate shift 在 position representation 中由 spatial derivative 实现；
+
+3. $H$ 之所以既表示 energy 又生成 time translation，并不是 quantum mechanics 的巧合，而是在 classical Hamiltonian mechanics 中已经存在；
+
+4. Noether theorem 精确地连接：
+   ```math
+   \text{continuous symmetry of the action}
+   \longrightarrow
+   \text{conserved quantity};
+   ```
+
+5. symmetry 要求的是 equations / action 的 form invariant，而不是 Lagrangian 的 numerical value 沿 trajectory 保持不变；
+
+6. classical observable $A(q,p)$、quantum operator $\hat A$ 和 expectation value
+   ```math
+   \langle\psi|\hat A|\psi\rangle
+   ```
+   是三个不同层次；
+
+7. classical Hamiltonian algebra 使用 Poisson brackets，而 quantum mechanics 使用 commutators；
+
+8. quantum mechanics 最重要的结构变化之一，是 observables 从 commuting phase-space functions 变成 generally noncommuting operators。
+
+因此这一节真正让我重新看到的是：
+
+```math
+\boxed{
+\text{classical symmetry / Hamiltonian structure}
+\quad\longrightarrow\quad
+\text{quantum unitary representation}
+}
+```
+
+并不是两套互不相关的语言。
+
+Coleman 现在做的，是把 classical spacetime symmetries 转写成它们在 quantum Hilbert space 上的 representations。
+
+
+
+
+
+
+
+
+
+
+
