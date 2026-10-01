@@ -5218,9 +5218,697 @@ translations commute：
 Coleman 现在做的，是把 classical spacetime symmetries 转写成它们在 quantum Hilbert space 上的 representations。
 
 
+## Rotations and translations must form one representation together
 
+这一节的重点不是分别重新讨论 rotation 和 translation，而是：
 
+> 前面已经分别知道 rotation 由 $U(R)$ 实现，translation 由 $U(\mathbf a)$ 实现。现在要问的是：它们放在一起以后，能不能共同实现整个 spatial symmetry group 的 multiplication structure？
 
+也就是说，不能只要求 rotation group 自己有 representation，也不能只要求 translations 自己有 representation。
+
+必须要求：
+
+```math
+\boxed{
+\text{rotations + translations together}
+}
+```
+
+在 Hilbert space 中形成整个 group 的 representation。
+
+---
+
+## Conditions on the rotation operator
+
+对于 rotation operator $U(R)$，前面已经有两个基本条件：
+
+```math
+\boxed{
+U^\dagger(R)U(R)=I
+}
+```
+
+也就是 $U(R)$ 是 unitary；
+
+以及 representation property：
+
+```math
+\boxed{
+U(R_1)U(R_2)
+=
+U(R_1R_2)
+}
+```
+
+这里暂时忽略 projective phase。
+
+但是如果 rotation 和 translation 要共同组成整个 symmetry group，还必须要求 rotation 正确作用在 momentum 和 Hamiltonian 上。
+
+---
+
+## Momentum must transform as a vector
+
+要求：
+
+```math
+\boxed{
+U^\dagger(R)\,\mathbf P\,U(R)
+=
+R\mathbf P.
+}
+```
+
+这里
+
+```math
+\mathbf P=(P_x,P_y,P_z)
+```
+
+是一个 operator-valued vector：
+
+它有三个 spatial components，而每一个 component 都是 Hilbert space 上的 operator。
+
+这个式子的物理意义是：
+
+> momentum operator 必须真的按照三维 vector 的方式 under rotations 变换。
+
+为什么是这种“两边夹击”的形式？
+
+因为 quantum state 旋转为
+
+```math
+|\psi\rangle
+\to
+|\psi'\rangle
+=
+U(R)|\psi\rangle.
+```
+
+因此 expectation value：
+
+```math
+\langle\mathbf P\rangle_{\psi'}
+=
+\langle\psi|
+U^\dagger(R)\mathbf P U(R)
+|\psi\rangle.
+```
+
+而 momentum 是 ordinary spatial vector，所以物理上要求：
+
+```math
+\langle\mathbf P\rangle_{\psi'}
+=
+R\langle\mathbf P\rangle_\psi.
+```
+
+因此 operator 本身必须满足
+
+```math
+\boxed{
+U^\dagger(R)\mathbf P U(R)
+=
+R\mathbf P.
+}
+```
+
+---
+
+## The Hamiltonian is rotationally invariant
+
+同时要求：
+
+```math
+\boxed{
+U^\dagger(R)HU(R)=H.
+}
+```
+
+对于 free relativistic particle：
+
+```math
+\boxed{
+H
+=
+\sqrt{\mathbf P^2+\mu^2}.
+}
+```
+
+其中
+
+```math
+\mathbf P^2
+=
+\mathbf P\cdot\mathbf P
+=
+P_x^2+P_y^2+P_z^2.
+```
+
+这里的 dot product 不是 Hilbert-space inner product。
+
+它只是 spatial vector indices 的 Euclidean contraction。
+
+因为 rotation 保持 Euclidean length：
+
+```math
+R^TR=I,
+```
+
+所以
+
+```math
+(R\mathbf P)^2
+=
+(R\mathbf P)^T(R\mathbf P)
+```
+
+```math
+=
+\mathbf P^TR^TR\mathbf P
+```
+
+```math
+=
+\mathbf P^T\mathbf P
+```
+
+```math
+=
+\mathbf P^2.
+```
+
+因此：
+
+```math
+\boxed{
+H
+=
+\sqrt{\mathbf P^2+\mu^2}
+}
+```
+
+在 rotation 下不变。
+
+所以可以理解为：
+
+```math
+\boxed{
+\mathbf P
+\text{ is a vector operator},
+}
+```
+
+但
+
+```math
+\boxed{
+\mathbf P^2
+\text{ is a rotational scalar operator},
+}
+```
+
+因此
+
+```math
+\boxed{
+H=f(\mathbf P^2)
+}
+```
+
+也是 rotational scalar。
+
+---
+
+## Translation operator
+
+spatial translation 由
+
+```math
+\boxed{
+U(\mathbf a)
+=
+e^{-i\mathbf P\cdot\mathbf a}
+}
+```
+
+实现。
+
+这里
+
+```math
+\mathbf a
+```
+
+是 ordinary spatial translation vector，而
+
+```math
+\mathbf P
+```
+
+是 momentum operator。
+
+---
+
+## How does a rotation act on a translation operator?
+
+我们计算：
+
+```math
+U^\dagger(R)
+U(\mathbf a)
+U(R).
+```
+
+代入 translation operator：
+
+```math
+U^\dagger(R)
+e^{-i\mathbf P\cdot\mathbf a}
+U(R).
+```
+
+这里利用：
+
+```math
+\boxed{
+U^\dagger e^A U
+=
+e^{U^\dagger A U}.
+}
+```
+
+这个关系可以从 exponential 的 Taylor expansion 看出来：
+
+```math
+e^A
+=
+1+A+\frac{A^2}{2!}+\cdots.
+```
+
+因为
+
+```math
+U^\dagger A^n U
+=
+(U^\dagger A U)^n,
+```
+
+其中反复插入
+
+```math
+UU^\dagger=I.
+```
+
+例如：
+
+```math
+U^\dagger A^2U
+=
+U^\dagger A
+UU^\dagger
+AU
+```
+
+```math
+=
+(U^\dagger AU)^2.
+```
+
+所以：
+
+```math
+U^\dagger(R)
+e^{-i\mathbf P\cdot\mathbf a}
+U(R)
+```
+
+```math
+=
+e^{-i
+\left(
+U^\dagger(R)\mathbf P U(R)
+\right)
+\cdot\mathbf a}.
+```
+
+利用
+
+```math
+U^\dagger(R)\mathbf P U(R)
+=
+R\mathbf P,
+```
+
+得到：
+
+```math
+=
+e^{-i(R\mathbf P)\cdot\mathbf a}.
+```
+
+---
+
+## Moving the rotation from $\mathbf P$ to $\mathbf a$
+
+现在利用 Euclidean dot product：
+
+```math
+(R\mathbf P)\cdot\mathbf a
+=
+(R\mathbf P)^T\mathbf a.
+```
+
+所以：
+
+```math
+(R\mathbf P)\cdot\mathbf a
+=
+\mathbf P^TR^T\mathbf a.
+```
+
+而 rotation matrix 满足：
+
+```math
+R^T=R^{-1}.
+```
+
+因此：
+
+```math
+\boxed{
+(R\mathbf P)\cdot\mathbf a
+=
+\mathbf P^TR^{-1}\mathbf a
+=
+\mathbf P\cdot(R^{-1}\mathbf a).
+}
+```
+
+这里最后一个 dot product 已经隐含：
+
+```math
+\mathbf P\cdot(R^{-1}\mathbf a)
+=
+\mathbf P^TR^{-1}\mathbf a.
+```
+
+所以：
+
+```math
+e^{-i(R\mathbf P)\cdot\mathbf a}
+=
+e^{-i\mathbf P\cdot(R^{-1}\mathbf a)}.
+```
+
+而根据 translation operator 的定义：
+
+```math
+U(\mathbf b)
+=
+e^{-i\mathbf P\cdot\mathbf b},
+```
+
+只要取
+
+```math
+\mathbf b=R^{-1}\mathbf a,
+```
+
+就得到：
+
+```math
+\boxed{
+U^\dagger(R)
+U(\mathbf a)
+U(R)
+=
+U(R^{-1}\mathbf a).
+}
+```
+
+---
+
+## Mixed multiplication law
+
+再左乘 $U(R)$：
+
+```math
+U(R)
+U^\dagger(R)
+U(\mathbf a)
+U(R)
+=
+U(R)
+U(R^{-1}\mathbf a).
+```
+
+由于
+
+```math
+U(R)U^\dagger(R)=I,
+```
+
+得到：
+
+```math
+\boxed{
+U(\mathbf a)U(R)
+=
+U(R)U(R^{-1}\mathbf a).
+}
+```
+
+这就是 rotation 和 translation 之间的 mixed multiplication law。
+
+---
+
+## They do not simply commute
+
+这里一开始我差点把这个理解成 rotation 和 translation “对易”。
+
+实际上恰恰相反：
+
+```math
+\boxed{
+U(\mathbf a)U(R)
+\neq
+U(R)U(\mathbf a)
+}
+```
+
+一般情况下并不 commute。
+
+真正成立的是：
+
+```math
+\boxed{
+U(\mathbf a)U(R)
+=
+U(R)U(R^{-1}\mathbf a).
+}
+```
+
+也就是说：
+
+> 如果交换 rotation 和 translation 的顺序，translation vector 必须相应旋转。
+
+所以这条公式描述的是：
+
+```math
+\boxed{
+\text{how rotations and translations fail to commute}.
+}
+```
+
+而不是说它们 commute。
+
+---
+
+## Geometrical meaning
+
+这个关系其实非常几何。
+
+如果原来：
+
+1. 先做 rotation $R$；
+2. 再做 translation $\mathbf a$；
+
+那么如果想把顺序交换为：
+
+1. 先 translation；
+2. 再 rotation；
+
+第一步 translation 就不能还是原来的 $\mathbf a$，而必须改成：
+
+```math
+R^{-1}\mathbf a.
+```
+
+这样最终几何效果才相同。
+
+因此：
+
+```math
+\boxed{
+\text{rotation changes the direction of translation vectors}.
+}
+```
+
+---
+
+## Why this matters for group representations
+
+这一节真正要说明的是：
+
+前面分别有：
+
+```math
+U(R_1)U(R_2)
+=
+U(R_1R_2)
+```
+
+描述 rotation group 的 representation；
+
+以及：
+
+```math
+U(\mathbf a)U(\mathbf b)
+=
+U(\mathbf a+\mathbf b)
+```
+
+描述 translation group 的 representation。
+
+但是如果想要 representation of the full group，还必须正确实现 rotation 和 translation 之间的 mixed structure：
+
+```math
+\boxed{
+U(\mathbf a)U(R)
+=
+U(R)U(R^{-1}\mathbf a).
+}
+```
+
+所以：
+
+```math
+\boxed{
+\text{representing each subgroup separately is not enough}.
+}
+```
+
+还必须保证：
+
+```math
+\boxed{
+\text{their interaction reproduces the full group multiplication law}.
+}
+```
+
+---
+
+## Connection to the semidirect product
+
+这正是之前出现过的 semidirect product structure。
+
+rotations 和 translations 共同组成：
+
+```math
+\mathbb R^3\rtimes SO(3)
+```
+
+而不是 direct product。
+
+原因就是 rotation 会作用在 translation vector 上。
+
+如果它们是 direct product，就应该可以简单交换：
+
+```math
+U(\mathbf a)U(R)
+=
+U(R)U(\mathbf a).
+```
+
+但实际是：
+
+```math
+U(\mathbf a)U(R)
+=
+U(R)U(R^{-1}\mathbf a).
+```
+
+所以：
+
+```math
+\boxed{
+\text{the translation subgroup is transformed by rotations}.
+}
+```
+
+---
+
+## What this lecture is doing
+
+这节课表面上只做了几行 operator manipulation，但真正的问题是：
+
+> 已经分别构造了 rotations 和 translations 的 quantum operators以后，它们能不能共同组成 full spatial symmetry group 的 representation？
+
+核心逻辑是：
+
+```math
+\boxed{
+U^\dagger(R)\mathbf P U(R)
+=
+R\mathbf P
+}
+```
+
+说明 momentum operator 按 vector 变换。
+
+于是 translation operator：
+
+```math
+U(\mathbf a)
+=
+e^{-i\mathbf P\cdot\mathbf a}
+```
+
+在 rotation 下满足：
+
+```math
+\boxed{
+U^\dagger(R)
+U(\mathbf a)
+U(R)
+=
+U(R^{-1}\mathbf a).
+}
+```
+
+进而：
+
+```math
+\boxed{
+U(\mathbf a)U(R)
+=
+U(R)U(R^{-1}\mathbf a).
+}
+```
+
+因此 rotation 和 translation 并不是两个互不相干的 symmetry representations。
+
+它们必须按照整个 group 的 multiplication law 彼此咬合。
+
+这就是这一节真正建立的结构：
+
+```math
+\boxed{
+\text{abstract group composition}
+\longrightarrow
+\text{operator composition on Hilbert space}.
+}
+```
 
 
 
