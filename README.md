@@ -5911,6 +5911,588 @@ U(R)U(R^{-1}\mathbf a).
 ```
 
 
+另外我上一版有一些公式没有完整放进 `math` block，于是你看到：
+
+```text
+\omega_{\mathbf p}
+\sqrt{\mathbf p^2+\mu^2}
+```
+
+## Lorentz-invariant measure on the mass shell
+
+对于质量为 $\mu$ 的自由粒子，允许的 four-momentum 满足 mass-shell condition：
+
+```math
+p^2=\mu^2.
+```
+
+也就是
+
+```math
+(p^0)^2-\mathbf p^2=\mu^2.
+```
+
+因此
+
+```math
+p^0=\pm\sqrt{\mathbf p^2+\mu^2}.
+```
+
+定义
+
+```math
+\omega_{\mathbf p}
+=
+\sqrt{\mathbf p^2+\mu^2}.
+```
+
+对于 positive-energy particle，我们取
+
+```math
+p^0=\omega_{\mathbf p}>0.
+```
+
+---
+
+### Geometric picture of the mass shell
+
+在简化的 $1+1$ dimensional momentum-space 图像中：
+
+- 横轴表示 spatial momentum $p$；
+- 纵轴表示 energy $p^0$；
+- equation
+
+```math
+(p^0)^2-p^2=\mu^2
+```
+
+形成一条双曲线。
+
+在真正的 $3+1$ dimensions 中，它对应 four-momentum space 中的一个 three-dimensional hyperboloid。
+
+每一个 mass-shell 上的点
+
+```math
+p^\mu=(p^0,\mathbf p)
+```
+
+都代表一个允许的 on-shell four-momentum。
+
+Lorentz boost 会把一个 mass-shell point 移到另一个 mass-shell point：
+
+```math
+p^\mu
+\longrightarrow
+p'^\mu
+=
+\Lambda^\mu{}_\nu p^\nu,
+```
+
+同时保持
+
+```math
+p'^2=p^2=\mu^2.
+```
+
+因此 Lorentz transformation 可以理解为：在同一个 mass shell 上，把一个允许的 four-momentum 变换成另一个允许的 four-momentum。
+
+---
+
+## What should an invariant measure mean?
+
+为了对 momentum states 做积分，我们希望找到一个 measure，使不同 inertial observers 对同一个 momentum-space region 的积分具有一致意义。
+
+这里
+
+```math
+dp,\qquad d^3\mathbf p
+```
+
+本身不是 physical observables。
+
+它们只是 momentum-space coordinates 的 infinitesimal integration elements。
+
+因此真正的问题不是：
+
+> $dp$ 本身是否可以被测量？
+
+而是：
+
+> 能否构造一个在 Lorentz transformations 下保持不变的 integration measure？
+
+---
+
+## The first obvious invariant measure: $d^4p$
+
+four-momentum space 中最自然的 measure 是
+
+```math
+d^4p
+=
+dp^0\,dp^1\,dp^2\,dp^3.
+```
+
+Lorentz transformation 为
+
+```math
+p'=\Lambda p.
+```
+
+根据 Jacobian transformation，
+
+```math
+d^4p'
+=
+|\det\Lambda|\,d^4p.
+```
+
+对于 connected proper Lorentz transformations，
+
+```math
+\det\Lambda=1.
+```
+
+因此
+
+```math
+d^4p'=d^4p.
+```
+
+所以 $d^4p$ 是 Lorentz invariant。
+
+在 $1+1$ dimensional 的简化图像里，可以把
+
+```math
+dp^0\,dp
+```
+
+想象成 momentum space 中一个 infinitesimal area element。
+
+Lorentz transformation 会改变这个小区域的形状，但不会改变它的面积，因为
+
+```math
+\det\Lambda=1.
+```
+
+要注意：
+
+```math
+\gamma\neq1
+```
+
+一般成立。
+
+真正等于 $1$ 的是整个 Lorentz transformation matrix 的 determinant：
+
+```math
+\det\Lambda=1.
+```
+
+---
+
+## Why is $d^4p$ not yet the measure we want?
+
+虽然 $d^4p$ 是 Lorentz invariant，但它测量的是整个 four-dimensional momentum space。
+
+而 physical one-particle states 只存在于 mass shell：
+
+```math
+p^2=\mu^2.
+```
+
+mass shell 是 four-dimensional momentum space 中的一个 three-dimensional hypersurface。
+
+因此它对于 four-dimensional volume measure $d^4p$ 来说是 measure zero。
+
+类比：
+
+- 一条 curve 在二维 area measure 下的面积为零；
+- 一个 surface 在三维 volume measure 下的体积为零；
+- 一个 three-dimensional hypersurface 在 four-dimensional volume measure 下的 four-volume 也为零。
+
+所以直接用
+
+```math
+d^4p
+```
+
+来 measure mass shell 并不合适。
+
+我们需要把 four-dimensional measure 限制到 mass shell 上。
+
+---
+
+## Using a delta function to impose the mass-shell constraint
+
+一个自然的方法是乘上
+
+```math
+\delta(p^2-\mu^2).
+```
+
+于是得到
+
+```math
+d^4p\,\delta(p^2-\mu^2).
+```
+
+delta function 强迫
+
+```math
+p^2-\mu^2=0.
+```
+
+因此只有满足
+
+```math
+p^2=\mu^2
+```
+
+的 momenta 才对积分有贡献。
+
+也就是说，delta function 把原来的 four-dimensional integration support 压到了 three-dimensional mass shell 上。
+
+这里体现了一个一般的思想：
+
+```math
+\text{constraint}
+\quad\longrightarrow\quad
+\delta(\text{constraint}).
+```
+
+例如
+
+```math
+\int dx\,dy\,
+\delta(y-f(x))\,F(x,y)
+```
+
+会把二维积分限制到曲线
+
+```math
+y=f(x)
+```
+
+上。
+
+同样，
+
+```math
+\delta(p^2-\mu^2)
+```
+
+把 four-momentum integral 限制到 mass shell。
+
+---
+
+## Why is this still Lorentz invariant?
+
+因为两部分分别 invariant。
+
+首先：
+
+```math
+d^4p'=d^4p.
+```
+
+其次：
+
+```math
+p'^2=p^2.
+```
+
+所以
+
+```math
+\delta(p'^2-\mu^2)
+=
+\delta(p^2-\mu^2).
+```
+
+因此
+
+```math
+d^4p\,
+\delta(p^2-\mu^2)
+```
+
+仍然是 Lorentz invariant。
+
+---
+
+## Both energy branches are still present
+
+mass-shell equation：
+
+```math
+(p^0)^2-\mathbf p^2=\mu^2
+```
+
+有两个解：
+
+```math
+p^0=\pm\omega_{\mathbf p},
+```
+
+其中
+
+```math
+\omega_{\mathbf p}
+=
+\sqrt{\mathbf p^2+\mu^2}.
+```
+
+因此
+
+```math
+\delta(p^2-\mu^2)
+```
+
+同时保留：
+
+```math
+p^0=+\omega_{\mathbf p}
+```
+
+和
+
+```math
+p^0=-\omega_{\mathbf p}.
+```
+
+也就是 positive-energy 和 negative-energy 两支 mass shell。
+
+如果这里只考虑 positive-energy one-particle states，还需要加入
+
+```math
+\theta(p^0).
+```
+
+于是得到：
+
+```math
+d^4p\,
+\delta(p^2-\mu^2)\,
+\theta(p^0).
+```
+
+---
+
+## Integrating out $p^0$
+
+写成
+
+```math
+p^2-\mu^2
+=
+(p^0)^2-\omega_{\mathbf p}^2.
+```
+
+使用 delta-function identity：
+
+```math
+\delta(f(x))
+=
+\sum_i
+\frac{\delta(x-x_i)}
+{|f'(x_i)|}.
+```
+
+这里
+
+```math
+f(p^0)
+=
+(p^0)^2-\omega_{\mathbf p}^2,
+```
+
+roots 是
+
+```math
+p^0=\pm\omega_{\mathbf p},
+```
+
+并且
+
+```math
+f'(p^0)=2p^0.
+```
+
+所以
+
+```math
+\delta\left(
+(p^0)^2-\omega_{\mathbf p}^2
+\right)
+=
+\frac{1}{2\omega_{\mathbf p}}
+\left[
+\delta(p^0-\omega_{\mathbf p})
++
+\delta(p^0+\omega_{\mathbf p})
+\right].
+```
+
+乘上 $\theta(p^0)$ 后，只保留 positive-energy root：
+
+```math
+\frac{1}{2\omega_{\mathbf p}}
+\delta(p^0-\omega_{\mathbf p}).
+```
+
+因此
+
+```math
+\int
+d^4p\,
+\delta(p^2-\mu^2)
+\theta(p^0)
+```
+
+对 $p^0$ 积分以后变成
+
+```math
+\int
+\frac{d^3\mathbf p}
+{2\omega_{\mathbf p}}.
+```
+
+于是 mass shell 上自然得到的 Lorentz-invariant measure 是
+
+```math
+\boxed{
+\frac{d^3\mathbf p}
+{2E_{\mathbf p}}
+}.
+```
+
+其中
+
+```math
+E_{\mathbf p}
+=
+\omega_{\mathbf p}
+=
+\sqrt{\mathbf p^2+\mu^2}.
+```
+
+---
+
+## Core idea
+
+这一节的逻辑可以压缩成：
+
+```math
+d^4p
+```
+
+是整个 four-momentum space 上的 Lorentz-invariant volume measure。
+
+但是 physical particle 被限制在
+
+```math
+p^2=\mu^2
+```
+
+这个 three-dimensional mass shell 上。
+
+因此使用
+
+```math
+\delta(p^2-\mu^2)
+```
+
+把 four-dimensional measure 限制到 mass shell：
+
+```math
+d^4p
+\longrightarrow
+d^4p\,\delta(p^2-\mu^2).
+```
+
+再用
+
+```math
+\theta(p^0)
+```
+
+只选择 positive-energy branch。
+
+最终得到
+
+```math
+d^4p\,
+\delta(p^2-\mu^2)
+\theta(p^0)
+\quad\longrightarrow\quad
+\frac{d^3\mathbf p}{2E_{\mathbf p}}.
+```
+
+所以
+
+```math
+\frac{d^3\mathbf p}{2E_{\mathbf p}}
+```
+
+不是人为加入的 normalization，而是由：
+
+```math
+\text{Lorentz-invariant four-dimensional measure}
++
+\text{mass-shell constraint}
+```
+
+自然得到的 on-shell invariant measure。
+
+---
+
+## Conceptual clarification
+
+这一节让我澄清了几个点：
+
+1. $dp$ 或 $d^3p$ 不是 observable，而是 integration measure element。
+
+2. Lorentz invariance 不是要求某个 coordinate interval $dp$ 自己保持不变。
+
+3. $d^4p$ invariant，是因为 Lorentz transformation 的 Jacobian 满足
+
+```math
+|\det\Lambda|=1.
+```
+
+4. mass shell 是 four-dimensional momentum space 中的 three-dimensional hypersurface，所以对于 $d^4p$ 来说是 measure-zero set。
+
+5. delta function 不只是“挑出一个点”。更一般地，它可以把 higher-dimensional integration 限制到满足 constraint 的 lower-dimensional surface。
+
+6. 因此
+
+```math
+\delta(p^2-\mu^2)
+```
+
+正是在把 four-dimensional momentum integral 压到 mass shell。
+
+7. 最后的
+
+```math
+\frac{1}{2E_{\mathbf p}}
+```
+
+来自 delta function 在解
+
+```math
+(p^0)^2-\omega_{\mathbf p}^2=0
+```
+
+时产生的 Jacobian factor。
+
+这一节真正建立的是：
+
+```math
+\text{Lorentz-invariant geometry of momentum space}
+\quad\longrightarrow\quad
+\text{Lorentz-invariant integration over on-shell states}.
+```
 
 
 
